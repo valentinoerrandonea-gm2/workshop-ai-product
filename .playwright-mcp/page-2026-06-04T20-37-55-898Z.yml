@@ -1,0 +1,354 @@
+- generic [ref=e2]:
+  - generic [ref=e3]: // Envío gratis en compras +$80.000 a todo el país · Despacho en 24h //
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "MAKERLAB inicio" [ref=e6] [cursor=pointer]:
+        - /url: Home.html
+        - img [ref=e7]
+        - generic [ref=e11]: MAKERLAB
+      - navigation "Principal" [ref=e12]:
+        - link "Catálogo" [ref=e13] [cursor=pointer]:
+          - /url: Catalogo.html
+        - link "Nosotros" [ref=e14] [cursor=pointer]:
+          - /url: "#nosotros"
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - img [ref=e17]
+          - searchbox "Buscar" [ref=e20]
+        - button "Cuenta" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - link "Carrito (3)" [ref=e25] [cursor=pointer]:
+          - /url: Carrito.html
+          - img [ref=e26]
+          - generic [ref=e30]: "3"
+  - main [ref=e31]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e35]: // Tienda maker · Argentina
+        - heading "Arduino, Raspberry Pi y todo lo que tu próximo proyecto necesita para existir." [level=1] [ref=e36]
+        - paragraph [ref=e37]: Componentes con stock real, precios claros y envíos a todo el país. Todo lo que necesitás, en un solo lugar.
+        - generic [ref=e38]:
+          - link "Ver catálogo" [ref=e39] [cursor=pointer]:
+            - /url: Catalogo.html
+            - text: Ver catálogo
+            - img [ref=e40]
+          - link "Empezar con un kit" [ref=e42] [cursor=pointer]:
+            - /url: Catalogo.html
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - img [ref=e45]
+            - generic [ref=e47]: 4.9 · 1.247 pedidos
+          - generic [ref=e48]:
+            - img [ref=e49]
+            - text: Envíos a todo el país
+          - generic [ref=e53]:
+            - img [ref=e54]
+            - text: Soporte técnico real
+      - generic [ref=e56]:
+        - generic [ref=e57]: ▶ VIDEO LOOP · PROYECTO EN VIVO
+        - generic [ref=e58]: / live.mp4 · 0:08
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - img [ref=e63]
+        - generic [ref=e67]:
+          - generic [ref=e68]: Envíos a todo el país
+          - generic [ref=e69]: Andreani · Correo Argentino
+      - generic [ref=e70]:
+        - img [ref=e72]
+        - generic [ref=e75]:
+          - generic [ref=e76]: Pagás como quieras
+          - generic [ref=e77]: MercadoPago, transferencia, tarjetas
+      - generic [ref=e78]:
+        - img [ref=e80]
+        - generic [ref=e82]:
+          - generic [ref=e83]: Stock real, despacho 24h
+          - generic [ref=e84]: Lo que ves disponible, sale hoy
+      - generic [ref=e85]:
+        - img [ref=e87]
+        - generic [ref=e89]:
+          - generic [ref=e90]: Asesoramiento técnico
+          - generic [ref=e91]: ¿Necesitás ayuda eligiendo? Escribinos
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - generic [ref=e95]:
+          - generic [ref=e96]: // Por dónde empezar
+          - heading "Navegá por categoría" [level=2] [ref=e97]
+        - link "Ver todo el catálogo" [ref=e98] [cursor=pointer]:
+          - /url: Catalogo.html
+          - text: Ver todo el catálogo
+          - img [ref=e99]
+      - generic [ref=e101]:
+        - link "Placas Arduino 24 productos →" [ref=e102] [cursor=pointer]:
+          - /url: Catalogo.html
+          - img [ref=e104]
+          - generic [ref=e108]:
+            - heading "Placas Arduino" [level=3] [ref=e109]
+            - text: 24 productos →
+        - link "Raspberry Pi 18 productos →" [ref=e110] [cursor=pointer]:
+          - /url: Catalogo.html
+          - img [ref=e112]
+          - generic [ref=e120]:
+            - heading "Raspberry Pi" [level=3] [ref=e121]
+            - text: 18 productos →
+        - link "Sensores 86 productos →" [ref=e122] [cursor=pointer]:
+          - /url: Catalogo.html
+          - img [ref=e124]
+          - generic [ref=e127]:
+            - heading "Sensores" [level=3] [ref=e128]
+            - text: 86 productos →
+        - link "Actuadores y motores 42 productos →" [ref=e129] [cursor=pointer]:
+          - /url: Catalogo.html
+          - img [ref=e131]
+          - generic [ref=e134]:
+            - heading "Actuadores y motores" [level=3] [ref=e135]
+            - text: 42 productos →
+        - link "Comunicación 31 productos →" [ref=e136] [cursor=pointer]:
+          - /url: Catalogo.html
+          - img [ref=e138]
+          - generic [ref=e141]:
+            - heading "Comunicación" [level=3] [ref=e142]
+            - text: 31 productos →
+        - link "Accesorios y herramientas 124 productos →" [ref=e143] [cursor=pointer]:
+          - /url: Catalogo.html
+          - img [ref=e145]
+          - generic [ref=e149]:
+            - heading "Accesorios y herramientas" [level=3] [ref=e150]
+            - text: 124 productos →
+    - generic [ref=e152]:
+      - generic [ref=e153]:
+        - generic [ref=e154]:
+          - generic [ref=e155]: // Lo que más se mueve
+          - heading "Bestsellers de la semana" [level=2] [ref=e156]
+        - link "Ver más populares" [ref=e158] [cursor=pointer]:
+          - /url: Catalogo.html?sort=popular
+      - generic [ref=e159]:
+        - article [ref=e160]:
+          - generic [ref=e161]:
+            - text: PRODUCTO
+            - generic [ref=e163]: Bestseller
+          - generic [ref=e164]:
+            - generic [ref=e165]: ARD-UNO-R3
+            - heading "Arduino UNO R3 Original" [level=3] [ref=e166]
+            - generic [ref=e167]:
+              - generic [ref=e168]: $32.500
+              - button "Sumar Arduino UNO R3 Original al pedido" [ref=e169] [cursor=pointer]:
+                - img [ref=e170]
+                - text: Sumar
+        - article [ref=e172]:
+          - generic [ref=e173]:
+            - text: PRODUCTO
+            - generic [ref=e175]: Nuevo
+          - generic [ref=e176]:
+            - generic [ref=e177]: RPI-5-8GB
+            - heading "Raspberry Pi 5 · 8 GB RAM" [level=3] [ref=e178]
+            - generic [ref=e179]:
+              - generic [ref=e180]: $168.000
+              - button "Sumar Raspberry Pi 5 · 8 GB RAM al pedido" [ref=e181] [cursor=pointer]:
+                - img [ref=e182]
+                - text: Sumar
+        - article [ref=e184]:
+          - generic [ref=e185]: PRODUCTO
+          - generic [ref=e186]:
+            - generic [ref=e187]: ESP32-DEV
+            - heading "ESP32 DevKit V1 · WiFi + BT" [level=3] [ref=e188]
+            - generic [ref=e189]:
+              - generic [ref=e190]: $14.900
+              - button "Sumar ESP32 DevKit V1 · WiFi + BT al pedido" [ref=e191] [cursor=pointer]:
+                - img [ref=e192]
+                - text: Sumar
+        - article [ref=e194]:
+          - generic [ref=e195]:
+            - text: PRODUCTO
+            - generic [ref=e197]: Stock bajo
+          - generic [ref=e198]:
+            - generic [ref=e199]: SEN-DHT22
+            - heading "Sensor DHT22 temperatura/humedad" [level=3] [ref=e200]
+            - generic [ref=e201]:
+              - generic [ref=e202]: $5.800
+              - button "Sumar Sensor DHT22 temperatura/humedad al pedido" [ref=e203] [cursor=pointer]:
+                - img [ref=e204]
+                - text: Sumar
+        - article [ref=e206]:
+          - generic [ref=e207]:
+            - text: PRODUCTO
+            - generic [ref=e209]: Combo
+          - generic [ref=e210]:
+            - generic [ref=e211]: KIT-PROTO
+            - heading "Protoboard 830 puntos + jumpers" [level=3] [ref=e212]
+            - generic [ref=e213]:
+              - generic [ref=e214]: $8.200
+              - button "Sumar Protoboard 830 puntos + jumpers al pedido" [ref=e215] [cursor=pointer]:
+                - img [ref=e216]
+                - text: Sumar
+        - article [ref=e218]:
+          - generic [ref=e219]: PRODUCTO
+          - generic [ref=e220]:
+            - generic [ref=e221]: MOT-SG90
+            - heading "Servomotor SG90 · 9g" [level=3] [ref=e222]
+            - generic [ref=e223]:
+              - generic [ref=e224]: $3.400
+              - button "Sumar Servomotor SG90 · 9g al pedido" [ref=e225] [cursor=pointer]:
+                - img [ref=e226]
+                - text: Sumar
+        - article [ref=e228]:
+          - generic [ref=e229]: PRODUCTO
+          - generic [ref=e230]:
+            - generic [ref=e231]: MOD-HC05
+            - heading "Módulo Bluetooth HC-05" [level=3] [ref=e232]
+            - generic [ref=e233]:
+              - generic [ref=e234]: $6.900
+              - button "Sumar Módulo Bluetooth HC-05 al pedido" [ref=e235] [cursor=pointer]:
+                - img [ref=e236]
+                - text: Sumar
+        - article [ref=e238]:
+          - generic [ref=e239]:
+            - text: PRODUCTO
+            - generic [ref=e241]: Bestseller
+          - generic [ref=e242]:
+            - generic [ref=e243]: OLED-128
+            - heading "Display OLED 0.96\" I²C 128×64" [level=3] [ref=e244]
+            - generic [ref=e245]:
+              - generic [ref=e246]: $7.200
+              - button "Sumar Display OLED 0.96\" I²C 128×64 al pedido" [ref=e247] [cursor=pointer]:
+                - img [ref=e248]
+                - text: Sumar
+    - generic [ref=e251]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: // Por qué comprarnos
+        - heading "Una tienda hecha por makers, para makers." [level=2] [ref=e255]
+      - generic [ref=e256]:
+        - generic [ref=e257]:
+          - generic [ref=e258]: 01 ───
+          - heading "Stock real, no pre-order" [level=3] [ref=e259]
+          - paragraph [ref=e260]: Lo que ves disponible, lo despachamos hoy. Sin esperas mágicas de 30 días.
+        - generic [ref=e261]:
+          - generic [ref=e262]: 02 ───
+          - heading "Asesoramiento de makers" [level=3] [ref=e263]
+          - paragraph [ref=e264]: ¿No sabés qué sensor usar? Te ayudamos a elegir, no a vender.
+        - generic [ref=e265]:
+          - generic [ref=e266]: 03 ───
+          - heading "Garantía sin vueltas" [level=3] [ref=e267]
+          - paragraph [ref=e268]: Si algo llega fallado, lo cambiamos dentro de los 30 días. Sin formularios eternos.
+        - generic [ref=e269]:
+          - generic [ref=e270]: 04 ───
+          - heading "Atención posventa real" [level=3] [ref=e271]
+          - paragraph [ref=e272]: Te responde una persona que sabe de electrónica, no un bot.
+    - generic [ref=e276]:
+      - generic [ref=e277]:
+        - generic [ref=e278]: // Newsletter
+        - heading "Ofertas, ingresos nuevos y descuentos." [level=2] [ref=e279]
+        - paragraph [ref=e280]: 1 mail por semana, cero spam. Te bajás también nuestra guía gratis "Tu primer proyecto con Arduino en 1 hora".
+      - generic [ref=e281]:
+        - generic [ref=e282]:
+          - textbox "Email" [ref=e283]:
+            - /placeholder: tu@email.com
+          - button "Suscribirme" [ref=e284] [cursor=pointer]
+        - generic [ref=e285]:
+          - generic [ref=e286]:
+            - text: PDF
+            - text: ·48p·
+          - generic [ref=e287]:
+            - text: "Guía: tu primer proyecto Arduino en 1 hora"
+            - text: Hardware mínimo, código comentado, debugging básico. Gratis al suscribirte.
+    - generic [ref=e290]:
+      - generic [ref=e291]:
+        - generic [ref=e292]: // Preguntas frecuentes
+        - heading "Lo que la gente pregunta antes de comprar." [level=2] [ref=e293]
+        - paragraph [ref=e294]:
+          - text: ¿No encontrás tu duda?
+          - link "Escribinos directo" [ref=e295] [cursor=pointer]:
+            - /url: "#"
+          - text: .
+      - generic [ref=e296]:
+        - generic [ref=e297]:
+          - button "¿Hacen envíos a todo el país? ¿Cuánto tarda?" [expanded] [ref=e298] [cursor=pointer]:
+            - generic [ref=e299]: ¿Hacen envíos a todo el país? ¿Cuánto tarda?
+            - img [ref=e301]
+          - generic [ref=e303]: "Sí, despachamos por Andreani y Correo Argentino a todo el país. CABA y GBA: 24-48hs. Interior: 3-5 días hábiles. Tenés tracking en tiempo real desde tu cuenta."
+        - button "¿Cuáles son las formas de pago?" [ref=e305] [cursor=pointer]:
+          - generic [ref=e306]: ¿Cuáles son las formas de pago?
+          - img [ref=e308]
+        - button "¿Tienen factura A/B?" [ref=e311] [cursor=pointer]:
+          - generic [ref=e312]: ¿Tienen factura A/B?
+          - img [ref=e314]
+        - button "¿Qué pasa si llega defectuoso?" [ref=e317] [cursor=pointer]:
+          - generic [ref=e318]: ¿Qué pasa si llega defectuoso?
+          - img [ref=e320]
+        - button "¿Tienen retiro en local? ¿Dónde?" [ref=e323] [cursor=pointer]:
+          - generic [ref=e324]: ¿Tienen retiro en local? ¿Dónde?
+          - img [ref=e326]
+        - button "¿Hacen pedidos a medida o cantidades grandes?" [ref=e329] [cursor=pointer]:
+          - generic [ref=e330]: ¿Hacen pedidos a medida o cantidades grandes?
+          - img [ref=e332]
+  - contentinfo [ref=e334]:
+    - generic [ref=e335]:
+      - generic [ref=e336]:
+        - generic [ref=e337]:
+          - link "MAKERLAB inicio" [ref=e338] [cursor=pointer]:
+            - /url: Home.html
+            - img [ref=e339]
+            - generic [ref=e343]: MAKERLAB
+          - paragraph [ref=e344]: Tienda maker en Argentina. Componentes con stock real, kits curados, tutoriales probados y una comunidad que te banca.
+        - generic [ref=e345]:
+          - heading "Tienda" [level=4] [ref=e346]
+          - list [ref=e347]:
+            - listitem [ref=e348]:
+              - link "Catálogo" [ref=e349] [cursor=pointer]:
+                - /url: Catalogo.html
+            - listitem [ref=e350]:
+              - link "Bestsellers" [ref=e351] [cursor=pointer]:
+                - /url: Catalogo.html
+            - listitem [ref=e352]:
+              - link "Ofertas" [ref=e353] [cursor=pointer]:
+                - /url: Catalogo.html
+        - generic [ref=e354]:
+          - heading "Ayuda" [level=4] [ref=e355]
+          - list [ref=e356]:
+            - listitem [ref=e357]:
+              - link "Envíos y devoluciones" [ref=e358] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e359]:
+              - link "FAQ" [ref=e360] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e361]:
+              - link "Contacto" [ref=e362] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e363]:
+              - link "Soporte técnico" [ref=e364] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e365]:
+          - heading "Empresa" [level=4] [ref=e366]
+          - list [ref=e367]:
+            - listitem [ref=e368]:
+              - link "Nosotros" [ref=e369] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e370]:
+              - link "Mayoristas" [ref=e371] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e372]:
+              - link "Trabajá con nosotros" [ref=e373] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e374]:
+              - link "Términos · Privacidad" [ref=e375] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e376]:
+        - generic [ref=e377]: © 2026 MAKERLAB · CUIT 30-00000000-0
+        - generic [ref=e378]:
+          - generic [ref=e379]: VISA
+          - generic [ref=e380]: MASTER
+          - generic [ref=e381]: AMEX
+          - generic [ref=e382]: MP
+          - generic [ref=e383]: TRANSF
+        - generic [ref=e384]:
+          - link "Instagram" [ref=e385] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e386]
+          - link "YouTube" [ref=e390] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e391]
+          - link "GitHub" [ref=e394] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e395]
+          - link "Discord" [ref=e397] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e398]

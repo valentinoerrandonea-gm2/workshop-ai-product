@@ -1,0 +1,480 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "MAKERLAB inicio" [ref=e5] [cursor=pointer]:
+        - /url: Home.html
+        - img [ref=e6]
+        - generic [ref=e10]: MAKERLAB
+      - navigation "Principal" [ref=e11]:
+        - link "Catálogo" [ref=e12] [cursor=pointer]:
+          - /url: Catalogo.html
+        - link "Nosotros" [ref=e13] [cursor=pointer]:
+          - /url: "#nosotros"
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - img [ref=e16]
+          - searchbox "Buscar" [ref=e19]
+        - button "Cuenta" [ref=e20] [cursor=pointer]:
+          - img [ref=e21]
+        - link "Carrito (3)" [ref=e24] [cursor=pointer]:
+          - /url: Carrito.html
+          - img [ref=e25]
+          - generic [ref=e29]: "3"
+  - banner [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - link "Inicio" [ref=e33] [cursor=pointer]:
+          - /url: Home.html
+        - text: / Catálogo
+      - heading "Catálogo completo" [level=1] [ref=e34]
+      - paragraph [ref=e35]: 24 productos en stock · Despachamos hoy lo que pidas antes de las 16hs.
+  - generic [ref=e37]:
+    - complementary [ref=e38]:
+      - generic [ref=e39]:
+        - heading "Categoría" [level=4] [ref=e40]
+        - generic [ref=e41] [cursor=pointer]:
+          - checkbox "Placas Arduino 3" [ref=e42]
+          - text: Placas Arduino
+          - generic [ref=e43]: "3"
+        - generic [ref=e44] [cursor=pointer]:
+          - checkbox "placas arduino 1" [ref=e45]
+          - text: placas arduino
+          - generic [ref=e46]: "1"
+        - generic [ref=e47] [cursor=pointer]:
+          - checkbox "Placas 1" [ref=e48]
+          - text: Placas
+          - generic [ref=e49]: "1"
+        - generic [ref=e50] [cursor=pointer]:
+          - checkbox "Placas Raspberry Pi 1" [ref=e51]
+          - text: Placas Raspberry Pi
+          - generic [ref=e52]: "1"
+        - generic [ref=e53] [cursor=pointer]:
+          - checkbox "RASPBERRY 1" [ref=e54]
+          - text: RASPBERRY
+          - generic [ref=e55]: "1"
+        - generic [ref=e56] [cursor=pointer]:
+          - checkbox "Sensores 2" [ref=e57]
+          - text: Sensores
+          - generic [ref=e58]: "2"
+        - generic [ref=e59] [cursor=pointer]:
+          - checkbox "sensores 1" [ref=e60]
+          - text: sensores
+          - generic [ref=e61]: "1"
+        - generic [ref=e62] [cursor=pointer]:
+          - checkbox "SENSORES Y MODULOS 1" [ref=e63]
+          - text: SENSORES Y MODULOS
+          - generic [ref=e64]: "1"
+        - generic [ref=e65] [cursor=pointer]:
+          - checkbox "Modulos 1" [ref=e66]
+          - text: Modulos
+          - generic [ref=e67]: "1"
+        - generic [ref=e68] [cursor=pointer]:
+          - checkbox "Modulos y comunicacion 1" [ref=e69]
+          - text: Modulos y comunicacion
+          - generic [ref=e70]: "1"
+        - generic [ref=e71] [cursor=pointer]:
+          - checkbox "Actuadores 2" [ref=e72]
+          - text: Actuadores
+          - generic [ref=e73]: "2"
+        - generic [ref=e74] [cursor=pointer]:
+          - checkbox "Actuadores y motores 1" [ref=e75]
+          - text: Actuadores y motores
+          - generic [ref=e76]: "1"
+        - generic [ref=e77] [cursor=pointer]:
+          - checkbox "Accesorios 7" [ref=e78]
+          - text: Accesorios
+          - generic [ref=e79]: "7"
+        - generic [ref=e80] [cursor=pointer]:
+          - checkbox "accesorios 1" [ref=e81]
+          - text: accesorios
+          - generic [ref=e82]: "1"
+      - generic [ref=e83]:
+        - heading "Marca" [level=4] [ref=e84]
+        - generic [ref=e85] [cursor=pointer]:
+          - checkbox "Arduino oficial" [ref=e86]
+          - text: Arduino oficial
+        - generic [ref=e87] [cursor=pointer]:
+          - checkbox "Raspberry Pi Foundation" [ref=e88]
+          - text: Raspberry Pi Foundation
+        - generic [ref=e89] [cursor=pointer]:
+          - checkbox "Adafruit" [ref=e90]
+          - text: Adafruit
+        - generic [ref=e91] [cursor=pointer]:
+          - checkbox "SparkFun" [ref=e92]
+          - text: SparkFun
+        - generic [ref=e93] [cursor=pointer]:
+          - checkbox "Genérico compatible" [ref=e94]
+          - text: Genérico compatible
+      - generic [ref=e95]:
+        - heading "Precio (ARS)" [level=4] [ref=e96]
+        - generic [ref=e97]:
+          - textbox "Mín" [ref=e98]: "2.000"
+          - generic [ref=e99]: —
+          - textbox "Máx" [ref=e100]: "200.000"
+      - generic [ref=e101]:
+        - heading "Stock" [level=4] [ref=e102]
+        - generic [ref=e103] [cursor=pointer]:
+          - checkbox "En stock" [checked] [ref=e104]
+          - text: En stock
+        - generic [ref=e105] [cursor=pointer]:
+          - checkbox "Pre-order" [ref=e106]
+          - text: Pre-order
+      - generic [ref=e107]:
+        - heading "Compatibilidad" [level=4] [ref=e108]
+        - generic [ref=e109] [cursor=pointer]:
+          - checkbox "Arduino UNO" [ref=e110]
+          - text: Arduino UNO
+        - generic [ref=e111] [cursor=pointer]:
+          - checkbox "Raspberry Pi 5" [ref=e112]
+          - text: Raspberry Pi 5
+        - generic [ref=e113] [cursor=pointer]:
+          - checkbox "ESP32" [ref=e114]
+          - text: ESP32
+        - generic [ref=e115] [cursor=pointer]:
+          - checkbox "3.3V lógica" [ref=e116]
+          - text: 3.3V lógica
+    - generic [ref=e117]:
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120]: Placas Arduino ✕
+          - generic [ref=e121]: En stock ✕
+          - button "Limpiar filtros" [ref=e122] [cursor=pointer]
+        - generic [ref=e123]:
+          - generic [ref=e124]: 24 productos
+          - combobox [ref=e125]:
+            - option "Relevancia" [selected]
+            - option "Más vendidos"
+            - 'option "Precio: menor a mayor"'
+            - 'option "Precio: mayor a menor"'
+            - option "Nuevos primero"
+      - generic [ref=e126]:
+        - article [ref=e127]:
+          - generic [ref=e128]: PRODUCTO
+          - generic [ref=e129]:
+            - generic [ref=e130]: ARD-UNO-R3
+            - heading "Arduino UNO R3" [level=3] [ref=e131]
+            - generic [ref=e132]:
+              - generic [ref=e133]: $28500
+              - button "Sumar Arduino UNO R3 al pedido" [ref=e134] [cursor=pointer]:
+                - img [ref=e135]
+                - text: Sumar
+        - article [ref=e137]:
+          - generic [ref=e138]: PRODUCTO
+          - generic [ref=e139]:
+            - generic [ref=e140]: ARD-NANO
+            - heading "Arduino Nano" [level=3] [ref=e141]
+            - generic [ref=e142]:
+              - generic [ref=e143]: $24.900
+              - button "Sumar Arduino Nano al pedido" [ref=e144] [cursor=pointer]:
+                - img [ref=e145]
+                - text: Sumar
+        - article [ref=e147]:
+          - generic [ref=e148]:
+            - text: PRODUCTO
+            - generic [ref=e150]: Stock bajo
+          - generic [ref=e151]:
+            - generic [ref=e152]: ARD-MEGA
+            - heading "Arduino Mega 2560" [level=3] [ref=e153]
+            - generic [ref=e154]:
+              - generic [ref=e155]: $52300
+              - button "Sumar Arduino Mega 2560 al pedido" [ref=e156] [cursor=pointer]:
+                - img [ref=e157]
+                - text: Sumar
+        - article [ref=e159]:
+          - generic [ref=e160]: PRODUCTO
+          - generic [ref=e161]:
+            - generic [ref=e162]: ESP-NODEMCU
+            - heading "NodeMCU ESP8266" [level=3] [ref=e163]
+            - generic [ref=e164]:
+              - generic [ref=e165]: $19800
+              - button "Sumar NodeMCU ESP8266 al pedido" [ref=e166] [cursor=pointer]:
+                - img [ref=e167]
+                - text: Sumar
+        - article [ref=e169]:
+          - generic [ref=e170]:
+            - text: PRODUCTO
+            - generic [ref=e172]: Stock bajo
+          - generic [ref=e173]:
+            - generic [ref=e174]: RPI-4B-4GB
+            - heading "Raspberry Pi 4B 4GB" [level=3] [ref=e175]
+            - generic [ref=e176]:
+              - generic [ref=e177]: $145000
+              - button "Sumar Raspberry Pi 4B 4GB al pedido" [ref=e178] [cursor=pointer]:
+                - img [ref=e179]
+                - text: Sumar
+        - article [ref=e181]:
+          - generic [ref=e182]:
+            - text: PRODUCTO
+            - generic [ref=e184]: Sin stock
+          - generic [ref=e185]:
+            - generic [ref=e186]: RPI-ZERO-W
+            - heading "Raspberry Pi Zero W" [level=3] [ref=e187]
+            - generic [ref=e188]:
+              - generic [ref=e189]: $38.000
+              - button "Sumar Raspberry Pi Zero W al pedido" [ref=e190] [cursor=pointer]:
+                - img [ref=e191]
+                - text: Sumar
+        - article [ref=e193]:
+          - generic [ref=e194]: PRODUCTO
+          - generic [ref=e195]:
+            - generic [ref=e196]: SEN-DHT22
+            - heading "Sensor temperatura y humedad DHT22" [level=3] [ref=e197]
+            - generic [ref=e198]:
+              - generic [ref=e199]: $8900
+              - button "Sumar Sensor temperatura y humedad DHT22 al pedido" [ref=e200] [cursor=pointer]:
+                - img [ref=e201]
+                - text: Sumar
+        - article [ref=e203]:
+          - generic [ref=e204]: PRODUCTO
+          - generic [ref=e205]:
+            - generic [ref=e206]: SEN-HCSR04
+            - heading "Sensor ultrasónico HC-SR04" [level=3] [ref=e207]
+            - generic [ref=e208]:
+              - generic [ref=e209]: $4200
+              - button "Sumar Sensor ultrasónico HC-SR04 al pedido" [ref=e210] [cursor=pointer]:
+                - img [ref=e211]
+                - text: Sumar
+        - article [ref=e213]:
+          - generic [ref=e214]: PRODUCTO
+          - generic [ref=e215]:
+            - generic [ref=e216]: SEN-PIR
+            - heading "Sensor de movimiento PIR HC-SR501" [level=3] [ref=e217]
+            - generic [ref=e218]:
+              - generic [ref=e219]: $5100
+              - button "Sumar Sensor de movimiento PIR HC-SR501 al pedido" [ref=e220] [cursor=pointer]:
+                - img [ref=e221]
+                - text: Sumar
+        - article [ref=e223]:
+          - generic [ref=e224]: PRODUCTO
+          - generic [ref=e225]:
+            - generic [ref=e226]: SEN-LDR
+            - heading "Fotorresistencia LDR 5mm" [level=3] [ref=e227]
+            - generic [ref=e228]:
+              - generic [ref=e229]: $800
+              - button "Sumar Fotorresistencia LDR 5mm al pedido" [ref=e230] [cursor=pointer]:
+                - img [ref=e231]
+                - text: Sumar
+        - article [ref=e233]:
+          - generic [ref=e234]: PRODUCTO
+          - generic [ref=e235]:
+            - generic [ref=e236]: LCD-1602-I2C
+            - heading "Display LCD 16x2 con I2C" [level=3] [ref=e237]
+            - generic [ref=e238]:
+              - generic [ref=e239]: $9700
+              - button "Sumar Display LCD 16x2 con I2C al pedido" [ref=e240] [cursor=pointer]:
+                - img [ref=e241]
+                - text: Sumar
+        - article [ref=e243]:
+          - generic [ref=e244]: PRODUCTO
+          - generic [ref=e245]:
+            - generic [ref=e246]: DRV-L298N
+            - heading "Driver de motores L298N" [level=3] [ref=e247]
+            - generic [ref=e248]:
+              - generic [ref=e249]: $6800
+              - button "Sumar Driver de motores L298N al pedido" [ref=e250] [cursor=pointer]:
+                - img [ref=e251]
+                - text: Sumar
+        - article [ref=e253]:
+          - generic [ref=e254]: PRODUCTO
+          - generic [ref=e255]:
+            - generic [ref=e256]: MOT-TT-DC
+            - heading "Motor DC TT con reductora" [level=3] [ref=e257]
+            - generic [ref=e258]:
+              - generic [ref=e259]: $3500
+              - button "Sumar Motor DC TT con reductora al pedido" [ref=e260] [cursor=pointer]:
+                - img [ref=e261]
+                - text: Sumar
+        - article [ref=e263]:
+          - generic [ref=e264]: PRODUCTO
+          - generic [ref=e265]:
+            - generic [ref=e266]: MOT-SG90
+            - heading "Servo SG90 9g" [level=3] [ref=e267]
+            - generic [ref=e268]:
+              - generic [ref=e269]: $4900
+              - button "Sumar Servo SG90 9g al pedido" [ref=e270] [cursor=pointer]:
+                - img [ref=e271]
+                - text: Sumar
+        - article [ref=e273]:
+          - generic [ref=e274]:
+            - text: PRODUCTO
+            - generic [ref=e276]: Stock bajo
+          - generic [ref=e277]:
+            - generic [ref=e278]: CHS-2WD
+            - heading "Chasis robot 2WD con ruedas" [level=3] [ref=e279]
+            - generic [ref=e280]:
+              - generic [ref=e281]: $16500
+              - button "Sumar Chasis robot 2WD con ruedas al pedido" [ref=e282] [cursor=pointer]:
+                - img [ref=e283]
+                - text: Sumar
+        - article [ref=e285]:
+          - generic [ref=e286]: PRODUCTO
+          - generic [ref=e287]:
+            - generic [ref=e288]: PRT-830
+            - heading "Protoboard 830 puntos" [level=3] [ref=e289]
+            - generic [ref=e290]:
+              - generic [ref=e291]: $6200
+              - button "Sumar Protoboard 830 puntos al pedido" [ref=e292] [cursor=pointer]:
+                - img [ref=e293]
+                - text: Sumar
+        - article [ref=e295]:
+          - generic [ref=e296]: PRODUCTO
+          - generic [ref=e297]:
+            - generic [ref=e298]: JMP-MM-40
+            - heading "Jumpers macho-macho x40" [level=3] [ref=e299]
+            - generic [ref=e300]:
+              - generic [ref=e301]: $3800
+              - button "Sumar Jumpers macho-macho x40 al pedido" [ref=e302] [cursor=pointer]:
+                - img [ref=e303]
+                - text: Sumar
+        - article [ref=e305]:
+          - generic [ref=e306]: PRODUCTO
+          - generic [ref=e307]:
+            - generic [ref=e308]: JMP-MH-40
+            - heading "Jumpers macho-hembra x40" [level=3] [ref=e309]
+            - generic [ref=e310]:
+              - generic [ref=e311]: $3800
+              - button "Sumar Jumpers macho-hembra x40 al pedido" [ref=e312] [cursor=pointer]:
+                - img [ref=e313]
+                - text: Sumar
+        - article [ref=e315]:
+          - generic [ref=e316]: PRODUCTO
+          - generic [ref=e317]:
+            - generic [ref=e318]: LED-5MM-X10
+            - heading "Pack 10 LEDs 5mm surtidos" [level=3] [ref=e319]
+            - generic [ref=e320]:
+              - generic [ref=e321]: $2100
+              - button "Sumar Pack 10 LEDs 5mm surtidos al pedido" [ref=e322] [cursor=pointer]:
+                - img [ref=e323]
+                - text: Sumar
+        - article [ref=e325]:
+          - generic [ref=e326]: PRODUCTO
+          - generic [ref=e327]:
+            - generic [ref=e328]: RES-220-X25
+            - heading "Pack 25 resistencias 220 ohm" [level=3] [ref=e329]
+            - generic [ref=e330]:
+              - generic [ref=e331]: $1500
+              - button "Sumar Pack 25 resistencias 220 ohm al pedido" [ref=e332] [cursor=pointer]:
+                - img [ref=e333]
+                - text: Sumar
+        - article [ref=e335]:
+          - generic [ref=e336]: PRODUCTO
+          - generic [ref=e337]:
+            - generic [ref=e338]: BTN-12MM
+            - heading "Pulsador táctil 12mm" [level=3] [ref=e339]
+            - generic [ref=e340]:
+              - generic [ref=e341]: $600
+              - button "Sumar Pulsador táctil 12mm al pedido" [ref=e342] [cursor=pointer]:
+                - img [ref=e343]
+                - text: Sumar
+        - article [ref=e345]:
+          - generic [ref=e346]: PRODUCTO
+          - generic [ref=e347]:
+            - generic [ref=e348]: BAT-4AA
+            - heading "Portapilas 4xAA con cable" [level=3] [ref=e349]
+            - generic [ref=e350]:
+              - generic [ref=e351]: $2900
+              - button "Sumar Portapilas 4xAA con cable al pedido" [ref=e352] [cursor=pointer]:
+                - img [ref=e353]
+                - text: Sumar
+        - article [ref=e355]:
+          - generic [ref=e356]: PRODUCTO
+          - generic [ref=e357]:
+            - generic [ref=e358]: PSU-5V-2A
+            - heading "Fuente 5V 2A micro USB" [level=3] [ref=e359]
+            - generic [ref=e360]:
+              - generic [ref=e361]: $7400
+              - button "Sumar Fuente 5V 2A micro USB al pedido" [ref=e362] [cursor=pointer]:
+                - img [ref=e363]
+                - text: Sumar
+        - article [ref=e365]:
+          - generic [ref=e366]:
+            - text: PRODUCTO
+            - generic [ref=e368]: Stock bajo
+          - generic [ref=e369]:
+            - generic [ref=e370]: ARD-UNO-R3
+            - heading "ARDUINO UNO R3 ORIGINAL" [level=3] [ref=e371]
+            - generic [ref=e372]:
+              - generic [ref=e373]: $31.200
+              - button "Sumar ARDUINO UNO R3 ORIGINAL al pedido" [ref=e374] [cursor=pointer]:
+                - img [ref=e375]
+                - text: Sumar
+      - generic [ref=e377]:
+        - button "‹" [ref=e378] [cursor=pointer]
+        - button "1" [ref=e379] [cursor=pointer]
+        - button "2" [ref=e380] [cursor=pointer]
+        - button "3" [ref=e381] [cursor=pointer]
+        - generic [ref=e382]: …
+        - button "14" [ref=e383] [cursor=pointer]
+        - button "›" [ref=e384] [cursor=pointer]
+  - contentinfo [ref=e385]:
+    - generic [ref=e386]:
+      - generic [ref=e387]:
+        - generic [ref=e388]:
+          - link "MAKERLAB inicio" [ref=e389] [cursor=pointer]:
+            - /url: Home.html
+            - img [ref=e390]
+            - generic [ref=e394]: MAKERLAB
+          - paragraph [ref=e395]: Tienda maker en Argentina. Componentes con stock real, kits curados, tutoriales probados y una comunidad que te banca.
+        - generic [ref=e396]:
+          - heading "Tienda" [level=4] [ref=e397]
+          - list [ref=e398]:
+            - listitem [ref=e399]:
+              - link "Catálogo" [ref=e400] [cursor=pointer]:
+                - /url: Catalogo.html
+            - listitem [ref=e401]:
+              - link "Bestsellers" [ref=e402] [cursor=pointer]:
+                - /url: Catalogo.html
+            - listitem [ref=e403]:
+              - link "Ofertas" [ref=e404] [cursor=pointer]:
+                - /url: Catalogo.html
+        - generic [ref=e405]:
+          - heading "Ayuda" [level=4] [ref=e406]
+          - list [ref=e407]:
+            - listitem [ref=e408]:
+              - link "Envíos y devoluciones" [ref=e409] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e410]:
+              - link "FAQ" [ref=e411] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e412]:
+              - link "Contacto" [ref=e413] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e414]:
+              - link "Soporte técnico" [ref=e415] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e416]:
+          - heading "Empresa" [level=4] [ref=e417]
+          - list [ref=e418]:
+            - listitem [ref=e419]:
+              - link "Nosotros" [ref=e420] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e421]:
+              - link "Mayoristas" [ref=e422] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e423]:
+              - link "Trabajá con nosotros" [ref=e424] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e425]:
+              - link "Términos · Privacidad" [ref=e426] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e427]:
+        - generic [ref=e428]: © 2026 MAKERLAB · CUIT 30-00000000-0
+        - generic [ref=e429]:
+          - generic [ref=e430]: VISA
+          - generic [ref=e431]: MASTER
+          - generic [ref=e432]: AMEX
+          - generic [ref=e433]: MP
+          - generic [ref=e434]: TRANSF
+        - generic [ref=e435]:
+          - link "Instagram" [ref=e436] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e437]
+          - link "YouTube" [ref=e441] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e442]
+          - link "GitHub" [ref=e445] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e446]
+          - link "Discord" [ref=e448] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e449]
