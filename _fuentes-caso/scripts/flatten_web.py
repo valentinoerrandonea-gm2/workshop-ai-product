@@ -86,10 +86,13 @@ def comunes(h: str) -> str:
     # footer: fuera la columna "Aprender" completa (div contenedor) y el link a kits
     h = re.sub(r'<div[^>]*>\s*<h4>Aprender</h4>.*?</ul>\s*</div>', "", h, flags=re.S)
     h = re.sub(r'<li><a href="[^"]*">Kits curados</a></li>', "", h)
-    # tagline del footer: sin kits/tutoriales/comunidad
+    # tagline del footer y meta description: sin kits/tutoriales/comunidad
     h = h.replace(
         "Componentes con stock real, kits curados, tutoriales probados y una comunidad que te banca.",
         "Componentes con stock real y envíos a todo el país desde 2021.")
+    h = h.replace(
+        "Tienda de Arduino, Raspberry Pi, sensores y kits curados con tutoriales paso a paso. Envíos a todo el país.",
+        "Tienda de Arduino, Raspberry Pi, sensores y componentes. Envíos a todo el país.")
     # marca completa
     h = h.replace("MAKERLAB — Arduino, Raspberry Pi y kits para makers",
                   "MakerLab Electrónica — Arduino, Raspberry Pi y componentes")
