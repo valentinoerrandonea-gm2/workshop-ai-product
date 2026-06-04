@@ -9,7 +9,8 @@ Cero dependencias externas: todo se resuelve con las capacidades multimodales de
 | `.png`, `.jpg`, `.heic`, capturas | Read directo (multimodal) |
 | `.docx`, `.doc`, `.rtf`, `.odt` | `textutil` (built-in de macOS, ver abajo) |
 | `.pptx` | Es un zip de XML — `unzip -p` + limpiar tags (ver abajo) |
-| `.ppt` (binario legacy) | Sin soporte nativo. Pedir al usuario que lo exporte a `.pptx` o PDF |
+| `.xlsx` | También es un zip de XML — dos variantes según quién lo guardó (ver abajo) |
+| `.ppt`, `.xls` (binarios legacy) | Sin soporte nativo. Pedir al usuario que lo exporte al formato moderno o PDF |
 
 ## Word (.docx, .doc, .rtf, .odt)
 
@@ -42,6 +43,38 @@ Cuidados:
 - **Orden numérico, no lexicográfico**: `slide10.xml` ordena antes que `slide2.xml` si se usa un glob. Iterar slide por slide (`slide1`, `slide2`, ..., `slide10`) para preservar el orden de la presentación.
 - **Speaker notes**: si existen `ppt/notesSlides/notesSlideN.xml`, extraerlas igual — suelen tener el contenido más valioso de la presentación.
 - Marcar cada slide en el contenido extraído (`## Slide 1`, `## Slide 2`...) para que la estructura sobreviva a la conversión.
+
+## Excel (.xlsx)
+
+Un `.xlsx` es un zip. Primero ver qué hojas tiene:
+
+```bash
+unzip -p "/path/al/archivo.xlsx" xl/workbook.xml | grep -o 'name="[^"]*"'
+```
+
+Los textos de las celdas viven en uno de dos lugares según qué herramienta guardó el archivo:
+
+```bash
+# Variante 1 — Excel real (Microsoft): strings compartidos en sharedStrings.xml
+unzip -p "/path/al/archivo.xlsx" xl/sharedStrings.xml | grep -o '<t[^>]*>[^<]*' | sed 's/<t[^>]*>//'
+
+# Variante 2 — generado por librerías (openpyxl, etc.): strings inline en cada hoja
+unzip -p "/path/al/archivo.xlsx" xl/worksheets/sheet1.xml | grep -o '<t>[^<]*' | sed 's/<t>//'
+```
+
+Probá la 1; si `unzip` dice "filename not matched", es la 2. Los valores numéricos están siempre en la hoja (`xl/worksheets/sheetN.xml`) dentro de `<v>`:
+
+```bash
+unzip -p "/path/al/archivo.xlsx" xl/worksheets/sheet1.xml | grep -o '<v>[^<]*' | sed 's/<v>//'
+```
+
+Cuidados:
+
+- **La posición es el dato**: en una tabla, un chorro de strings sueltos no sirve — necesitás saber a qué fila y columna pertenece cada celda. El grep de `<t>` alcanza para *ver qué hay*, pero para reconstruir la tabla leé la hoja por filas: cada `<row r="N">` contiene celdas `<c r="A2">`, `<c r="B2">`... donde la letra es la columna. Reconstruí fila por fila antes de interpretar.
+- En la variante sharedStrings, las celdas de texto de la hoja guardan **índices** (`t="s"`, `<v>3</v>` = el cuarto string del sharedStrings) — reconstruir la tabla leyendo ambos XML lado a lado.
+- Cada hoja es un `sheetN.xml` distinto: extraer todas, no solo la primera. El orden de `workbook.xml` es el orden visible de las pestañas.
+- Los textos pueden venir con entidades XML (`&#243;` = ó) — decodificarlas al transcribir.
+- Si la planilla es grande o con fórmulas complejas, pedir al usuario un export a CSV en vez de pelear con el XML.
 
 ## Después de extraer
 

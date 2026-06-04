@@ -1,0 +1,29 @@
+MINUTA INTERNA — REVISION DE OPERADOR LOGISTICO
+Fecha: 05/03/2026 — 10:00 — oficina
+Asistentes: Tomas Brizuela, Carla Dominguez
+Redacta: Tomas Brizuela
+
+TEMA: evaluacion de cambio de operador logistico por la suba de reclamos.
+
+1. SITUACION ACTUAL
+- Operador unico: Andreani. Tarifa promedio por envio AMBA: $4.850.
+- Reclamos por demora en febrero: 11 (record negativo). Caso testigo: pedido
+  #4821, dos semanas demorado, cliente muy enojado.
+- El 70% de los envios sale en menos de 48 hs; el problema es la cola del 30%.
+
+2. ALTERNATIVAS EVALUADAS
+- OCA: tarifa similar ($4.600 AMBA), mejor cobertura en el interior segun
+  referencias de otros vendedores del rubro. Sin experiencia propia.
+- Correo Argentino: mas barato ($3.900) pero plazos mas largos declarados.
+- Esquema mixto: Andreani AMBA + OCA interior. Mas trabajo operativo de etiquetas.
+
+3. DECISION
+- Probar esquema mixto durante abril y mayo con metricas por operador.
+- Tomas arma planilla de seguimiento de envios por operador.
+- Revisar resultados en la primera semana de junio.
+
+4. PENDIENTES
+- Pedir alta comercial en OCA (Tomas, esta semana).
+- Avisar el cambio en la pagina de envios de la web cuando arranque la prueba.
+
+FIN

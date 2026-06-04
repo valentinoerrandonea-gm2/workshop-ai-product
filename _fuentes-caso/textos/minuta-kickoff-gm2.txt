@@ -1,0 +1,63 @@
+MINUTA DE REUNION — KICKOFF MAKERLAB x GM2
+Fecha: 20/05/2026 — 15:00 a 16:30 — videollamada
+Asistentes por MakerLab: Marcos Etcheverry (fundador), Carla Dominguez (gerencia
+comercial), Tomas Brizuela (catalogo y operaciones), Romina Paez (instructora)
+Asistentes por GM2: equipo de consultoria asignado
+Redacta: Carla Dominguez
+
+
+1. CONTEXTO
+
+MakerLab Electronica es una tienda online de Arduino, Raspberry Pi y componentes
+con casi cinco anios de operacion. La direccion decidio pivotear el negocio hacia
+MakerLab Academy: una escuela de hardware y robotica que vende sus propios
+productos a traves de cursos. La decision esta tomada y la primera camada de
+cursos esta definida; lo que falta es COMO MOSTRARLO en la web.
+
+2. EL MODELO (resumen para GM2)
+
+- Cursos pagos con el kit de componentes INCLUIDO. No se vende el curso sin kit.
+- Un solo precio y una sola accion de compra por curso ("Inscribirme - kit incluido").
+- Modalidad online en vivo + material grabado. El kit se envia al inscribirse.
+- Todos los componentes de los kits salen del catalogo propio.
+
+3. LA PRIMERA CAMADA DE CURSOS (definitiva, cerrada por el equipo en abril)
+
+a) Semaforo inteligente — nivel inicial — 4 clases / 6 horas — $89.900
+b) Estacion meteorologica IoT — nivel intermedio — 6 clases / 10 horas — $149.900
+c) Robot evita-obstaculos — nivel avanzado — 8 clases / 14 horas — $189.900
+
+Los precios son finales e incluyen el kit y el envio. Los temarios completos y el
+detalle de componentes por kit estan en el documento de Romina y en el excel del
+catalogo (hoja "cursos") que se adjunta a esta minuta.
+
+4. EL PEDIDO A GM2
+
+Prototipo navegable en HTML de la SECCION CURSOS integrada a la web actual de
+MakerLab. En concreto:
+
+- Una pagina de listado de cursos (los tres de la primera camada).
+- Una pagina de detalle de curso con: que vas a construir, temario por clases,
+  nivel y duracion, el kit incluido con su lista de componentes, el precio unico,
+  y el llamado a la accion de inscripcion (uno solo, con el kit incluido).
+- La seccion tiene que sentirse parte de la web existente (mismo diseno), no un
+  sitio aparte.
+- Tecnologia: HTML estatico simple. No queremos frameworks ni dependencias: el
+  prototipo es para validar el concepto con el directorio, no es el producto final.
+
+5. MATERIAL QUE ENTREGA MAKERLAB
+
+- El excel del catalogo de productos TAL CUAL ESTA. Tomas advierte que tiene
+  problemas conocidos (SKUs duplicados, categorias inconsistentes, faltan stocks)
+  y que no hay tiempo de limpiarlo antes: GM2 debera trabajar con eso.
+- Los temarios de Romina, las slides de la vision de Carla y el historial de
+  conversaciones relevantes del equipo.
+
+6. PLAZOS Y PROXIMOS PASOS
+
+- Deadline del prototipo: DOS SEMANAS a partir de hoy (entrega 03/06/2026).
+- GM2 presenta el prototipo navegable en la proxima reunion.
+- Queda para una fase posterior (NO entra en este alcance): checkout real,
+  pasarela de pagos, plataforma de cursado, limpieza definitiva del catalogo.
+
+FIN DE LA MINUTA

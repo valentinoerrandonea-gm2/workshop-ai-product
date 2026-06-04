@@ -1,0 +1,169 @@
+- generic [ref=e2]:
+  - generic [ref=e3]: // Envío gratis en compras +$80.000 a todo el país · Despacho en 24h //
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "MAKERLAB inicio" [ref=e6] [cursor=pointer]:
+        - /url: Home.html
+        - img [ref=e7]
+        - generic [ref=e11]: MAKERLAB
+      - navigation "Principal" [ref=e12]:
+        - link "Cursos" [ref=e13] [cursor=pointer]:
+          - /url: Cursos.html
+        - link "Catálogo" [ref=e14] [cursor=pointer]:
+          - /url: Catalogo.html
+        - link "Nosotros" [ref=e15] [cursor=pointer]:
+          - /url: "#nosotros"
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - img [ref=e18]
+          - searchbox "Buscar" [ref=e21]
+        - button "Cuenta" [ref=e22] [cursor=pointer]:
+          - img [ref=e23]
+        - link "Carrito (3)" [ref=e26] [cursor=pointer]:
+          - /url: Carrito.html
+          - img [ref=e27]
+          - generic [ref=e31]: "3"
+  - main [ref=e32]:
+    - generic [ref=e34]:
+      - generic [ref=e35]: // MakerLab Academy
+      - heading "Aprendé robótica. El kit va incluido." [level=1] [ref=e36]
+      - paragraph [ref=e37]: "Cursos online en vivo donde no mirás: armás. Te inscribís, te llega el kit con todos los componentes a tu casa, y construís el proyecto clase a clase con un instructor que te acompaña. Un solo precio, cero vueltas."
+      - generic [ref=e38]:
+        - generic [ref=e39]: ✓ Kit a domicilio
+        - generic [ref=e40]: ·
+        - generic [ref=e41]: ✓ Clases grabadas para siempre
+        - generic [ref=e42]: ·
+        - generic [ref=e43]: ✓ Sin conocimientos previos (nivel inicial)
+    - generic [ref=e45]:
+      - generic [ref=e46]: // Primera camada
+      - heading "Tres cursos, una progresión." [level=2] [ref=e47]
+      - generic [ref=e48]:
+        - article [ref=e49]:
+          - generic [ref=e50]:
+            - text: SEMÁFORO ARMADO · LEDS ENCENDIDOS
+            - generic [ref=e51]: ● Inicial
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]: 4 clases
+              - generic [ref=e55]: ·
+              - generic [ref=e56]: 6 hs
+              - generic [ref=e57]: ·
+              - generic [ref=e58]: online en vivo
+            - heading "Semáforo inteligente" [level=3] [ref=e59]
+            - paragraph [ref=e60]: "Tu primer circuito real: un semáforo con botón peatonal y modo nocturno. De cero, sin experiencia previa."
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]: Curso + kit incluido
+                - generic [ref=e64]: $89.900
+              - link "Ver curso" [ref=e66] [cursor=pointer]:
+                - /url: Curso-Semaforo.html
+                - text: Ver curso
+                - img [ref=e67]
+        - article [ref=e69]:
+          - generic [ref=e70]:
+            - text: ESTACIÓN METEOROLÓGICA · LCD ENCENDIDO
+            - generic [ref=e71]: ● Intermedio
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - generic [ref=e74]: 6 clases
+              - generic [ref=e75]: ·
+              - generic [ref=e76]: 10 hs
+              - generic [ref=e77]: ·
+              - generic [ref=e78]: online en vivo
+            - heading "Estación meteorológica IoT" [level=3] [ref=e79]
+            - paragraph [ref=e80]: Medí temperatura y humedad, mostralas en un display y publicalas por WiFi para verlas desde el celular.
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - generic [ref=e83]: Curso + kit incluido
+                - generic [ref=e84]: $149.900
+              - generic [ref=e86]: Inscripción próximamente
+        - article [ref=e87]:
+          - generic [ref=e88]:
+            - text: ROBOT 2WD · EN MOVIMIENTO
+            - generic [ref=e89]: ● Avanzado
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]: 8 clases
+              - generic [ref=e93]: ·
+              - generic [ref=e94]: 14 hs
+              - generic [ref=e95]: ·
+              - generic [ref=e96]: online en vivo
+            - heading "Robot evita-obstáculos" [level=3] [ref=e97]
+            - paragraph [ref=e98]: Un robot con dos motores que detecta obstáculos con ultrasonido y decide solo hacia dónde moverse.
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - generic [ref=e101]: Curso + kit incluido
+                - generic [ref=e102]: $189.900
+              - generic [ref=e104]: Inscripción próximamente
+  - contentinfo [ref=e105]:
+    - generic [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - link "MAKERLAB inicio" [ref=e109] [cursor=pointer]:
+            - /url: Home.html
+            - img [ref=e110]
+            - generic [ref=e114]: MAKERLAB
+          - paragraph [ref=e115]: Tienda maker en Argentina. Componentes con stock real y envíos a todo el país desde 2021.
+        - generic [ref=e116]:
+          - heading "Tienda" [level=4] [ref=e117]
+          - list [ref=e118]:
+            - listitem [ref=e119]:
+              - link "Catálogo" [ref=e120] [cursor=pointer]:
+                - /url: Catalogo.html
+            - listitem [ref=e121]:
+              - link "Bestsellers" [ref=e122] [cursor=pointer]:
+                - /url: Catalogo.html
+            - listitem [ref=e123]:
+              - link "Ofertas" [ref=e124] [cursor=pointer]:
+                - /url: Catalogo.html
+        - generic [ref=e125]:
+          - heading "Ayuda" [level=4] [ref=e126]
+          - list [ref=e127]:
+            - listitem [ref=e128]:
+              - link "Envíos y devoluciones" [ref=e129] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e130]:
+              - link "FAQ" [ref=e131] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e132]:
+              - link "Contacto" [ref=e133] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e134]:
+              - link "Soporte técnico" [ref=e135] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e136]:
+          - heading "Empresa" [level=4] [ref=e137]
+          - list [ref=e138]:
+            - listitem [ref=e139]:
+              - link "Nosotros" [ref=e140] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e141]:
+              - link "Mayoristas" [ref=e142] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e143]:
+              - link "Trabajá con nosotros" [ref=e144] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e145]:
+              - link "Términos · Privacidad" [ref=e146] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e147]:
+        - generic [ref=e148]: © 2026 MAKERLAB · CUIT 30-00000000-0
+        - generic [ref=e149]:
+          - generic [ref=e150]: VISA
+          - generic [ref=e151]: MASTER
+          - generic [ref=e152]: AMEX
+          - generic [ref=e153]: MP
+          - generic [ref=e154]: TRANSF
+        - generic [ref=e155]:
+          - link "Instagram" [ref=e156] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e157]
+          - link "YouTube" [ref=e161] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e162]
+          - link "GitHub" [ref=e165] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e166]
+          - link "Discord" [ref=e168] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e169]

@@ -1,0 +1,44 @@
+## SLIDE 1: MakerLab Academy — de tienda a escuela
+- Propuesta de dirección comercial
+- Carla Domínguez — Abril 2026
+- CONFIDENCIAL — uso interno
+
+## SLIDE 2: El problema
+- El margen de venta de componentes se achica todos los trimestres
+- Competimos por precio contra importados directos en MercadoLibre
+- El cliente nos compra una vez y no vuelve: no hay recurrencia
+- El catálogo creció sin orden y hoy cuesta hasta encontrar un producto
+
+## SLIDE 3: La oportunidad
+- La gente no quiere componentes: quiere PROYECTOS terminados y funcionando
+- Los tutoriales gratis de YouTube no incluyen los materiales ni el acompañamiento
+- Nadie en el país vende "el proyecto completo": clases + kit + soporte
+- Nosotros ya tenemos el stock, el conocimiento y la marca
+
+## SLIDE 4: El modelo
+- Cursos pagos de hardware y robótica con el kit de componentes INCLUIDO
+- Un solo precio: comprás el curso, te llega el kit a tu casa
+- Clases online en vivo + material grabado para siempre
+- Cada curso usa exclusivamente componentes de nuestro catálogo
+
+## SLIDE 5: La frase
+- No vendemos cursos.
+- Vendemos el resultado armado en tu mesa.
+
+## SLIDE 6: Primera camada de cursos
+- Estamos definiendo la grilla final con el equipo
+- Criterio: kits con stock propio y margen sano
+- Progresión pedagógica: inicial → intermedio → avanzado
+- Lanzamiento escalonado, un curso a la vez
+
+## SLIDE 7: La web hoy no puede mostrar esto
+- El catálogo online está tan desordenado como el excel
+- No existe una sección de cursos ni nada parecido
+- No hay forma de comprar un curso y su kit en una sola operación
+- Necesitamos mostrar el modelo nuevo sin romper la tienda actual
+
+## SLIDE 8: Próximos pasos
+- Definir la grilla final de cursos con Tomás y Romina
+- Ordenar el catálogo (o al menos no mostrarlo así)
+- Contratar una consultora de desarrollo para el prototipo de la sección Cursos
+- Objetivo: prototipo navegable para mostrar al directorio

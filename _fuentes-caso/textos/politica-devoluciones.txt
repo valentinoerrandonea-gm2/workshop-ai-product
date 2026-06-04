@@ -1,0 +1,33 @@
+MAKERLAB ELECTRONICA — POLITICA DE CAMBIOS Y DEVOLUCIONES
+Vigencia: noviembre 2025
+Documento publico — se entrega impreso con cada pedido
+
+1. ARREPENTIMIENTO DE COMPRA
+Tenes 10 dias corridos desde que recibis el pedido para arrepentirte de la
+compra sin dar ningun motivo, segun la normativa vigente de defensa del
+consumidor. El producto debe estar sin uso, con el embalaje original y todos
+sus accesorios. El costo del envio de devolucion corre por nuestra cuenta.
+
+2. PRODUCTO DEFECTUOSO (DOA)
+Si un producto llega fallado o deja de funcionar dentro de los 30 dias, lo
+cambiamos por uno nuevo sin cargo. Para placas (Arduino, Raspberry Pi, NodeMCU)
+pedimos un video corto mostrando la falla para acelerar el proceso: en general
+resolvemos sin que tengas que mandar nada de vuelta.
+
+3. GARANTIA
+Todos los productos tienen garantia legal de 6 meses. Las placas originales
+(Arduino, Raspberry Pi) tienen ademas la garantia del fabricante de 12 meses.
+La garantia no cubre danios por conexion incorrecta, sobretension, modificaciones
+o soldaduras del cliente.
+
+4. COMO INICIAR UN CAMBIO O DEVOLUCION
+Escribinos a cambios@makerlab.com.ar con el numero de pedido y una descripcion
+del problema. Respondemos dentro de las 24 horas habiles. No recibimos
+devoluciones sin gestion previa.
+
+5. EXCEPCIONES
+No se aceptan devoluciones de: componentes vendidos por unidad suelta ya
+manipulados (LEDs, resistencias, jumpers fuera de su pack cerrado), productos
+en seccion "outlet" (fallas esteticas declaradas) y software o licencias.
+
+Ante cualquier duda: cambios@makerlab.com.ar — WhatsApp +54 9 11 5555-0199
