@@ -70,8 +70,10 @@ unzip -p "/path/al/archivo.xlsx" xl/worksheets/sheet1.xml | grep -o '<v>[^<]*' |
 
 Cuidados:
 
-- En la variante sharedStrings, las celdas de texto de la hoja guardan **índices** (`t="s"`, `<v>3</v>` = el cuarto string del sharedStrings) — para tablas chicas conviene reconstruir la tabla leyendo ambos XML lado a lado.
+- **La posición es el dato**: en una tabla, un chorro de strings sueltos no sirve — necesitás saber a qué fila y columna pertenece cada celda. El grep de `<t>` alcanza para *ver qué hay*, pero para reconstruir la tabla leé la hoja por filas: cada `<row r="N">` contiene celdas `<c r="A2">`, `<c r="B2">`... donde la letra es la columna. Reconstruí fila por fila antes de interpretar.
+- En la variante sharedStrings, las celdas de texto de la hoja guardan **índices** (`t="s"`, `<v>3</v>` = el cuarto string del sharedStrings) — reconstruir la tabla leyendo ambos XML lado a lado.
 - Cada hoja es un `sheetN.xml` distinto: extraer todas, no solo la primera. El orden de `workbook.xml` es el orden visible de las pestañas.
+- Los textos pueden venir con entidades XML (`&#243;` = ó) — decodificarlas al transcribir.
 - Si la planilla es grande o con fórmulas complejas, pedir al usuario un export a CSV en vez de pelear con el XML.
 
 ## Después de extraer
