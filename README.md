@@ -52,7 +52,7 @@ Procesa notas crudas en cualquier formato (`md`, `txt`, `pdf`, `docx`, `pptx`, i
 - Le agrega una **augmentation**: resumen estructurado, un análisis que desafía la nota (contradicciones, riesgos, preguntas no obvias) e implicaciones.
 - La taggea en **4 ejes**: `proyecto/<nombre>/<arista>`, `tema/<amplio>`, `persona/<nombre>`, `concepto/<específico>`.
 - La conecta con notas existentes vía **wikilinks** y **triples tipados** (`references`, `depends-on`, `contradicts`, `refines`...).
-- La guarda en `~/Documents/projects/<proyecto>/`, creando la carpeta del proyecto si no existe.
+- La guarda en `~/Documents/projects/<proyecto>/<tipo>/`, ruteándola por tipo (decisión, aprendizaje, doc formal, nota), y crea/actualiza el `overview.md` del proyecto.
 
 ```
 /process-rufino ~/Desktop/minuta-reunion.pdf
@@ -88,10 +88,15 @@ Todo vive en `~/Documents/projects/`:
 ├── _people/<nombre>.md       # una página por persona, con sus menciones
 ├── _conceptos/<slug>.md      # páginas de concepto (auto-creadas con ≥2 menciones)
 ├── _inbox/                   # crudos de /rufino-ingest esperando proceso
-└── <proyecto>/<nota>.md      # tus notas procesadas, una carpeta por proyecto
+└── <proyecto>/               # una carpeta por proyecto, estructurada por dentro:
+    ├── overview.md           #   síntesis viva del proyecto (lo mantiene Rufino)
+    ├── decisiones/           #   decisiones y acuerdos (fechados)
+    ├── aprendizajes/         #   learnings, gotchas, insights
+    ├── docs/                 #   documentos formales: specs, briefs, políticas
+    └── notas/                #   ideas, apuntes, notas de trabajo
 ```
 
-Es markdown plano: podés abrirlo con Obsidian (los wikilinks y tags funcionan nativos), con cualquier editor, o dejar que `/ask-rufino` lo navegue por vos.
+Cada proyecto no es una bolsa plana: tiene su `overview.md` y las notas repartidas por tipo (más subcarpetas propias si hacen falta, ej. `reuniones/`). Es markdown plano: podés abrirlo con Obsidian (los wikilinks y tags funcionan nativos), con cualquier editor, o dejar que `/ask-rufino` lo navegue por vos.
 
 ## Demo sugerida (con `notas-ejemplo/`)
 

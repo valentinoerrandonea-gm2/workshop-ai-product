@@ -38,12 +38,15 @@ Si la nota menciona personas, leer también `_people.md`.
 
 Según el formato del archivo, seguir [references/extraccion.md](references/extraccion.md). El resultado es el contenido original que se embebe tal cual en la nota procesada.
 
-### 4. Determinar proyecto y arista
+### 4. Determinar proyecto, arista y carpeta destino
 
-- **Proyecto** = la carpeta destino en `~/Documents/projects/<proyecto>/`. Inferirlo del contenido; reusar un proyecto existente del índice si encaja. Si la nota no pertenece a ningún proyecto puntual, va a `general/`.
+- **Proyecto** = la carpeta en `~/Documents/projects/<proyecto>/`. Inferirlo del contenido; reusar un proyecto existente del índice si encaja. Si la nota no pertenece a ningún proyecto puntual, va a `general/`.
 - **Arista** = sub-área dentro del proyecto (va en el tag `proyecto/<nombre>/<arista>`, no en la estructura de carpetas).
+- **Subcarpeta** = qué tipo de nota es → `decisiones/`, `aprendizajes/`, `docs/`, `notas/`, o una subcarpeta nueva si no encaja (ver "Ruteo" en `formato.md`). La nota final vive en `<proyecto>/<subcarpeta>/<filename>`.
 
 Si el proyecto es genuinamente ambiguo entre dos existentes, preguntale al usuario con AskUserQuestion en vez de adivinar.
+
+Si el proyecto es **nuevo** (la carpeta no existe), creá su `overview.md` esqueleto al final (paso 8) con lo que sepas de esta primera nota.
 
 ### 5. Generar la nota procesada
 
@@ -62,14 +65,18 @@ Por cada persona mencionada, crear o actualizar `_people/<nombre>.md` y el índi
 
 Contar menciones de cada `concepto/<x>` en la base; con ≥2 menciones y sin página, crear `_conceptos/<x>.md` (sección Promoción de `formato.md`).
 
-### 8. Escribir y actualizar índices
+### 8. Escribir, overview y actualizar índices
 
-1. Escribir la nota en `~/Documents/projects/<proyecto>/<slug>.md`.
-   - Caso especial: si el input era un crudo de `_inbox/`, el crudo SE CONVIERTE en la nota procesada — `mv` del archivo de `_inbox/` a `<proyecto>/<slug>.md` y reescribirlo con la versión procesada (mismo contenido, relocado y augmentado). Nunca deben quedar dos copias: ni en el inbox ni como `-raw`.
+1. Escribir la nota en `~/Documents/projects/<proyecto>/<subcarpeta>/<filename>` (la subcarpeta del paso 4; `decisiones/` lleva filename fechado).
+   - Caso especial: si el input era un crudo de `_inbox/`, el crudo SE CONVIERTE en la nota procesada — `mv` del archivo de `_inbox/` a su subcarpeta destino y reescribirlo con la versión procesada (mismo contenido, relocado y augmentado). Nunca deben quedar dos copias: ni en el inbox ni como `-raw`.
    - Cualquier otro archivo fuente (el pdf en el Desktop, el docx en Downloads) queda donde está, intacto.
-2. Actualizar `_index.md`: fila nueva en "Notas procesadas", tabla de Proyectos y Stats.
-3. **Cross-references**: revisar las notas existentes que esta nota referencia o que deberían referenciarla — agregarles el wikilink en su sección Connections y el triple correspondiente en su frontmatter.
+2. **`overview.md` del proyecto** (sección "`overview.md` por proyecto" de `formato.md`):
+   - Proyecto nuevo → crear el esqueleto en `<proyecto>/overview.md`.
+   - Proyecto existente → actualizar SOLO las secciones que esta nota cambia (Decisiones clave si fue una decisión, Estado actual si movió el estado, etc.) + `updated`. Incremental, no regenerar.
+3. Actualizar `_index.md`: fila nueva en "Notas procesadas", tabla de Proyectos (con link al overview) y Stats.
+4. **Cross-references**: revisar las notas existentes que esta nota referencia o que deberían referenciarla — agregarles el wikilink en su sección Connections y el triple correspondiente en su frontmatter.
+   - **Batch grande** (procesás muchas notas juntas, ej. la primera ingesta): no intentes cerrar los cross-references nota por nota mientras escribís. Escribí primero todas las notas, y al final hacé UNA pasada de cierre: por cada par relacionado, asegurate de que el link y su triple inverso existan en ambas (`caused-by`↔`led-to`, `contradicts` simétrico). Es fácil dejar inversos a medias si lo hacés sobre la marcha.
 
 ## Reporte final
 
-Al terminar, contale al usuario en 3-5 líneas: qué se procesó, a qué proyecto fue cada nota (con path clickeable), qué tags y triples se generaron, y si hubo personas registradas o conceptos promovidos. Sin transcribir la nota entera — el archivo habla.
+Al terminar, contale al usuario en 3-5 líneas: qué se procesó, a qué proyecto y subcarpeta fue cada nota (con path clickeable), qué tags y triples se generaron, si se creó o actualizó el `overview.md`, y si hubo personas registradas o conceptos promovidos. Sin transcribir la nota entera — el archivo habla.
