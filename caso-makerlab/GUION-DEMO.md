@@ -60,9 +60,16 @@ Mientras procesa, narrás lo que va pasando en pantalla:
 - **El momento clave**: cuando procesa el mail de Marcos y el Slack, mirá el
   frontmatter — debería aparecer un triple `contradicts`/`replaces` entre ambos.
   Todavía no lo expliques del todo: "guarden esto, vuelve en la fase 2".
+- **La estructura emergiendo**: cuando termine, abrí la carpeta del proyecto y
+  mostrá que NO es una bolsa plana: hay un `overview.md` (síntesis viva), y las
+  notas quedaron ruteadas por tipo (`decisiones/`, `docs/`, `notas/`...). El
+  excel y los temarios fueron a `docs/`, las minutas con decisiones a
+  `decisiones/`. Esto es lo que diferencia un knowledge base de un cajón de notas.
 
-**Checkpoint ✓**: `ls ~/Documents/projects/` muestra el proyecto del caso con
-~11 notas, `_index.md` poblado, `_people/` con los 4 del cliente.
+**Checkpoint ✓**: `find ~/Documents/projects/<proyecto>` muestra `overview.md` +
+las subcarpetas (`decisiones/`, `docs/`, `notas/`) con las ~11 notas adentro,
+`_index.md` poblado con link al overview, `_people/` con los 4 del cliente.
+(`ls` del proyecto muestra las carpetas; `find ... -name '*.md' | wc -l` cuenta las notas.)
 
 **Rescate**: el que no terminó sigue mirando tu pantalla en fase 2 y procesa
 después — las preguntas de discovery las puede correr contra tu narración.

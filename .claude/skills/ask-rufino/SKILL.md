@@ -20,6 +20,8 @@ Si `~/Documents/projects/` o su `_index.md` no existen, la base está vacía: de
 
 Leer `~/Documents/projects/_index.md`. La tabla "Notas procesadas" tiene tags y resumen de una línea por nota — con eso identificás qué notas pueden contener la respuesta sin leer toda la base.
 
+Si la pregunta es sobre un proyecto entero ("¿en qué está X?", "¿qué decidimos en X?"), arrancá leyendo `<proyecto>/overview.md` (lo linkea la tabla de Proyectos del índice): es la síntesis viva y suele responder o decirte exactamente qué nota abrir. Las decisiones de un proyecto viven en `<proyecto>/decisiones/`, los aprendizajes en `<proyecto>/aprendizajes/` — navegá por carpeta cuando la pregunta es de ese tipo.
+
 ### 3. Buscar más allá del índice si hace falta
 
 Si el índice no alcanza (la pregunta usa palabras que no aparecen en tags ni resúmenes), Grep sobre `~/Documents/projects/` con los términos clave de la pregunta **y sus sinónimos** (case-insensitive). Las notas crudas usan el vocabulario del usuario, no el tuyo.
@@ -40,7 +42,7 @@ Read de las notas candidatas completas (original + augmentation). Desde ahí, se
 En español, con esta estructura:
 
 1. **La respuesta directa primero** — lo que el usuario preguntó, sintetizado desde las notas.
-2. **Fuentes** — lista de las notas usadas: `[[slug]]` + path clickeable (`~/Documents/projects/<proyecto>/<slug>.md`) + una línea de por qué es relevante.
+2. **Fuentes** — lista de las notas usadas: `[[slug]]` + path clickeable (`~/Documents/projects/<proyecto>/<subcarpeta>/<slug>.md`) + una línea de por qué es relevante.
 
 Citar SOLO notas que efectivamente leíste. Si dos notas se contradicen, mostrá ambas versiones con sus fechas — no elijas en silencio.
 

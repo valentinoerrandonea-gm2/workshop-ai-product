@@ -13,10 +13,49 @@ Todo vive en `~/Documents/projects/`:
 ├── _people/<nombre>.md       # una página por persona mencionada
 ├── _conceptos/<slug>.md      # páginas de concepto (promoción automática)
 ├── _inbox/                   # crudos de /rufino-ingest esperando proceso
-└── <proyecto>/<nota>.md      # notas procesadas, una carpeta por proyecto
+└── <proyecto>/               # una carpeta por proyecto, con estructura interna ↓
 ```
 
 Las carpetas meta llevan `_` al inicio para que nunca colisionen con el nombre de un proyecto.
+
+## Estructura interna de un proyecto
+
+Cada proyecto NO es una bolsa plana de notas: tiene un overview y las notas repartidas por tipo, igual que un knowledge base de verdad.
+
+```
+~/Documents/projects/<proyecto>/
+├── overview.md          # síntesis viva del proyecto — el primer lugar para entenderlo
+├── decisiones/          # decisiones, acuerdos, minutas con outcome    → YYYY-MM-DD-<topic>.md
+├── aprendizajes/        # learnings, gotchas, insights no obvios       → <topic>.md
+├── docs/                # documentos formales / de referencia          → <topic>.md
+│                        #   (specs, políticas, briefs, temarios, manuales)
+└── notas/               # todo lo demás: ideas, apuntes, notas de trabajo → <slug>.md
+```
+
+**Estructura fija + libertad**: estas 4 subcarpetas son el esqueleto que SIEMPRE existe. Pero si una nota no encaja honestamente en ninguna, creá una subcarpeta nueva con nombre claro en kebab-case (ej. `reuniones/`, `finanzas/`, `research/`) en vez de forzarla a `notas/`. Antes de crear una subcarpeta nueva, mirá las que ya existen en ese proyecto y reusá si encaja — no fragmentar (`reuniones/` y `meetings/` conviviendo es peor que cualquiera).
+
+### Ruteo: qué nota va a qué carpeta
+
+Clasificá cada nota por lo que ES, no por su formato de origen:
+
+| La nota es... | Va a | Señales |
+|---|---|---|
+| Una **decisión** tomada, un acuerdo, una minuta cuyo valor es lo que se resolvió | `decisiones/` | "decidimos", "quedamos en", "se aprobó", definiciones cerradas, outcomes de reunión |
+| Un **aprendizaje**: un gotcha, un insight no obvio, algo que costó descubrir | `aprendizajes/` | "resulta que", "el truco es", "no sabíamos que", lecciones, post-mortems |
+| Un **documento formal o de referencia**: algo que se vuelve a consultar, no efímero | `docs/` | specs, políticas, briefs, temarios, manuales, contratos, requerimientos, listas de precios |
+| Cualquier **otra cosa**: ideas sueltas, apuntes, notas de trabajo | `notas/` | lo que no cae claro en las tres de arriba |
+
+**Desempate `docs/` vs `notas/`** (la frontera más borrosa): rutear por **función, no por formato**. Un mail o un mensaje de Slack es informal por formato, pero si su valor es de referencia durable (una lista de precios del proveedor, una política, un acuerdo de alcance que vas a reconsultar), va a `docs/`. Si es un intercambio efímero que mañana no vas a volver a abrir (una queja puntual, una coordinación), va a `notas/`. La pregunta es: *¿alguien va a volver a buscar esto como referencia?* Sí → `docs/`; no → `notas/`.
+| Algo que **no encaja** en ninguna y es un tipo recurrente en el proyecto | subcarpeta nueva | ej. transcripts de reunión recurrentes → `reuniones/` |
+
+Una minuta de reunión que sobre todo **registra decisiones** va a `decisiones/` (con su fecha); si es más bien notas crudas de lo que se habló, va a `notas/`. Ante la duda entre dos buckets, elegí el que mejor describe POR QUÉ alguien volvería a abrir esa nota.
+
+### Filenames por carpeta
+
+- `decisiones/`: **siempre fechado** — `YYYY-MM-DD-<topic>.md` (ej. `2026-04-15-tres-cursos-definitivos.md`). La fecha es la del evento/decisión, no la de procesamiento.
+- `aprendizajes/`, `docs/`, `notas/` y subcarpetas nuevas: slug kebab-case del título (ej. `extraccion-xlsx-por-filas.md`). **Fecha opcional**: si la nota tiene una fecha que es parte de su identidad y ayuda a ordenarla (una reunión, un reclamo puntual, un evento), prefijala igual (`2026-02-18-reclamo-pedido-4821.md`). Si la fecha no aporta, omitila.
+
+El grafo (wikilinks y triples) es **por basename**, así que mover una nota a una subcarpeta no rompe ningún link — el basename sigue siendo único en toda la base. Por eso los filenames tienen que ser únicos cruzando todo el proyecto, no solo dentro de su carpeta.
 
 ## Estructura de una nota procesada
 
@@ -56,7 +95,7 @@ triples:
 ## Connections
 ```
 
-**Filename**: slug kebab-case del título, sin espacios, acentos ni mayúsculas. Ej: `minuta-kickoff-asistente-soporte.md`.
+**Filename y ubicación**: la nota va a `<proyecto>/<subcarpeta>/<filename>` según el ruteo de arriba. Slug kebab-case del título, sin espacios, acentos ni mayúsculas (las de `decisiones/` van fechadas). Ej: `asistente-soporte/decisiones/2026-04-15-tres-cursos-definitivos.md`.
 
 **`created`** = fecha del contenido original si se puede inferir (fecha mencionada en la nota, fecha del archivo); ante una fecha relativa o ambigua ("el martes", "la semana pasada"), usar la fecha de modificación del archivo fuente; último recurso, la de hoy. **`processed`** = hoy.
 
@@ -186,6 +225,62 @@ updated: YYYY-MM-DD
 
 ```
 
+## `overview.md` por proyecto
+
+Cada proyecto tiene un `overview.md` en su raíz: la síntesis viva del proyecto, el primer lugar al que va alguien (o `/ask-rufino`) para entender de qué se trata sin leer todas las notas.
+
+**Ciclo de vida**:
+- **Al nacer el proyecto** (primera nota que cae en una carpeta de proyecto nueva): crear el esqueleto con lo que se sepa. Las secciones sin contenido todavía quedan con un placeholder honesto (`_(sin decisiones registradas aún)_`).
+- **Si el nacimiento es un batch grande** (procesás muchas notas de un proyecto en una sola corrida, ej. la primera ingesta de un cliente): el overview nace casi completo, no como esqueleto — está bien, escribilo entero con lo que sale del batch. El "esqueleto con placeholders" es para cuando arrancás con una sola nota.
+- **En cada corrida posterior que agrega o cambia notas**: actualizar SOLO las secciones afectadas y el campo `updated`. Es incremental — no se relee todo el proyecto ni se regenera entero. Si la nota nueva es una decisión, agregás su línea a "Decisiones clave"; si cambia el estado, reescribís "Estado actual"; si no mueve nada del overview, no lo toques.
+
+```markdown
+---
+tags:
+  - proyecto/<nombre>/general
+  - tipo/overview
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+---
+
+# <Proyecto> — Overview
+
+> Síntesis viva mantenida por Rufino. El primer lugar para entender este proyecto.
+
+## Qué es
+
+<1-2 párrafos: de qué trata el proyecto, su objetivo.>
+
+## Estado actual
+
+<Lo último que se sabe: en qué punto está, qué se está haciendo ahora.>
+
+## Decisiones clave
+
+- [[YYYY-MM-DD-topic]] — una línea con la decisión
+
+## Aprendizajes
+
+- [[topic]] — una línea con el insight
+
+## Tensiones y contradicciones
+
+<Dónde los documentos del proyecto NO concuerdan, o cabos sueltos sin resolver.
+Cada uno con cómo se resolvió (y la fuente que gana) o que sigue abierto. Omitir
+la sección si genuinamente no hay ninguna — pero no la fuerces a vacío si las hay:
+en muchos proyectos esto es lo más valioso del overview.>
+
+## Personas
+
+- [[_people/nombre]] — rol en el proyecto
+
+## Notas
+
+<Punteo o conteo de las notas del proyecto por carpeta, para navegar.>
+```
+
+El overview se referencia por **path relativo** (`<proyecto>/overview.md`), nunca por wikilink pelado `[[overview]]`: como todos los proyectos tienen un `overview.md`, el basename colisiona. Los triples y Connections nunca apuntan a un overview.
+
 ## `_index.md`
 
 ```markdown
@@ -202,9 +297,9 @@ updated: YYYY-MM-DD
 
 ## Proyectos
 
-| Proyecto | Notas |
-|----------|-------|
-| `<proyecto>/` | N |
+| Proyecto | Overview | Notas |
+|----------|----------|-------|
+| `<proyecto>/` | [overview](<proyecto>/overview.md) | N |
 
 ## Notas procesadas
 
@@ -230,3 +325,4 @@ updated: YYYY-MM-DD
 - Idioma: español. Términos técnicos en inglés sin traducir. Si la nota original está en inglés, la augmentation va en español igual.
 - Nota muy corta (<20 palabras): procesar igual, con augmentation proporcional — no inflar.
 - Si una nota ya tiene `status: processed` en el frontmatter, no reprocesarla.
+- **No retrofittear**: si un proyecto ya tiene notas planas viejas en su raíz (de antes de la estructura por carpetas), dejalas donde están — no las muevas. Las notas nuevas sí van a su subcarpeta, y el `overview.md` se crea igual. La base puede convivir mezclada sin romperse (el grafo es por basename).
