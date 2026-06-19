@@ -1,6 +1,8 @@
 # Caso: MakerLab Electrónica
 
-> Tu consigna para el workshop. Leé esto primero.
+> El escenario del cliente — la historia. **Tu tarea concreta, paso a paso, está
+> en [CONSIGNA.md](CONSIGNA.md).** Leé este brief para entender el contexto y
+> después andá a la consigna.
 
 ## El cliente
 
@@ -20,34 +22,17 @@ dictar y qué componentes lleva cada uno. Lo que **no** tienen es la capacidad d
 desarrollo para mostrarlo en su web, ni del todo claro cómo debería verse. Por eso
 nos contrataron a nosotros (GM2).
 
-## Qué recibís
+## Qué nos dieron
 
-- **`material-cliente/`** — todo lo que el cliente nos mandó: minutas, mails,
-  conversaciones internas, presentaciones, fotos y su famoso excel del catálogo.
-  Está tal cual nos lo dieron: desordenado, con ruido, y no todo dice lo mismo.
-- **`web-actual/`** — la web que MakerLab tiene HOY (HTML estático). Abrila en el
-  browser y recorrela: es tu punto de partida.
+El cliente nos pasó **todo lo que tenía, tal cual**: minutas de reunión, mails,
+una conversación de Slack, una presentación de gerencia, una foto de una pizarra
+y el famoso Excel del catálogo. Está desordenado, con ruido, y no todos los
+documentos dicen lo mismo entre sí. Eso vive en `material-cliente/`.
 
-## Qué se espera de vos
+También tenemos acceso a la web que MakerLab tiene **hoy** (`web-actual/`): un
+ecommerce de catálogo, sin nada de cursos todavía. Ese es el punto de partida
+sobre el que hay que trabajar.
 
-1. **Procesá el material** del cliente con las skills de Rufino
-   (`/process-rufino`) para construir tu base de conocimiento del caso.
-2. **Descubrí qué nos están pidiendo** interrogando tu base con `/ask-rufino`:
-   ¿qué quieren construir? ¿cuántos cursos? ¿qué incluye cada uno? ¿a qué precio?
-   Ojo: no todos los documentos están de acuerdo entre sí — parte del trabajo es
-   darse cuenta de eso y resolver con qué versión quedarse.
-3. **Escribí el spec** del entregable usando el planning de Claude Code.
-4. **Construí el prototipo**: la sección de cursos integrada a la web actual.
-5. **Validá y publicá**: cotejá contra el outcome esperado (se comparte al final)
-   y subí tu prototipo a Gizmo.
+---
 
-## Reglas del juego
-
-- El prototipo es **HTML estático puro**: sin React, sin frameworks, sin build
-  steps. Lo que el browser abre, es.
-- Tiene que **sentirse parte de la web actual** — mismo diseño, misma navegación.
-  Reusá el CSS que ya existe en `web-actual/`.
-- El contenido del prototipo sale del material del cliente, no de tu imaginación:
-  cursos, precios, componentes y textos tienen una fuente.
-- No hace falta checkout real ni backend: es un prototipo navegable para validar
-  el concepto.
+➡️ **Tu tarea, paso a paso, está en [CONSIGNA.md](CONSIGNA.md).**

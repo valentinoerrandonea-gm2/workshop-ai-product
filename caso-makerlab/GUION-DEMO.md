@@ -43,6 +43,10 @@ contrató. Nos mandaron una carpeta con TODO lo que tenían: minutas, mails, su
 Slack, un excel. Nuestro trabajo: entender qué quieren y construirles el
 prototipo. Como en la vida real: nadie nos va a escribir el requerimiento limpio."
 
+Decíles que el caso trae dos docs para leer: **`BRIEF.md`** (la historia del
+cliente) y **`CONSIGNA.md`** (su tarea completa, paso a paso). El guión que sigue
+abajo es tu versión instructor de esa misma consigna, con spoilers y tiempos.
+
 ## Fase 1 — Procesar el corpus (25 min)
 
 **Objetivo:** convertir los 11 archivos del cliente en una base de conocimiento.
