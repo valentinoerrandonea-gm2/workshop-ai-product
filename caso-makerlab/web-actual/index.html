@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es" data-palette="teal"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MakerLab Electrónica — Arduino, Raspberry Pi y componentes</title>
+<meta name="description" content="Tienda de Arduino, Raspberry Pi, sensores y componentes. Envíos a todo el país.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+
+
+
+<style>
+/* MAKERLAB — Design tokens & base styles */
+
+:root {
+  /* Color tokens — default palette: Verde teal eléctrico */
+  --bg: #F7F4EE;
+  --bg-elev: #FFFFFF;
+  --bg-section: #EFEAE0;
+  --ink: #1A1714;
+  --ink-soft: #4A453E;
+  --ink-mute: #807A6F;
+  --line: #E5DFD2;
+  --line-strong: #D6CFBE;
+
+  --accent: #0BB07B;        /* primario teal/verde */
+  --accent-ink: #042B1F;
+  --accent-soft: #D9F3E8;
+
+  --led: #F2C200;           /* amarillo warning */
+  --hot: #E14B3A;           /* rojo stock bajo / errores */
+
+  --pcb: #0E0E0C;           /* footer / hero alt */
+  --pcb-ink: #C5BEAE;
+
+  /* Type */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* Shadows */
+  --sh-sm: 0 1px 2px rgba(20,18,15,.04), 0 0 0 1px var(--line);
+  --sh-md: 0 4px 14px rgba(20,18,15,.06), 0 0 0 1px var(--line);
+  --sh-lg: 0 18px 48px -12px rgba(20,18,15,.18), 0 0 0 1px var(--line);
+}
+
+/* Palette: cyan electric */
+[data-palette="cyan"] {
+  --accent: #07B6D5;
+  --accent-ink: #062A33;
+  --accent-soft: #D6F3F9;
+}
+
+/* Palette: orange maker */
+[data-palette="orange"] {
+  --accent: #F26B1F;
+  --accent-ink: #3A1604;
+  --accent-soft: #FBE2D2;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+img { max-width: 100%; display: block; }
+
+/* Layout */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+@media (max-width: 720px) {
+  .container { padding: 0 18px; }
+}
+
+/* Type */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(40px, 6vw, 76px); line-height: 1.02; letter-spacing: -0.035em; }
+h2 { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.025em; }
+h3 { font-size: 20px; line-height: 1.25; }
+p  { margin: 0; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.mono { font-family: var(--font-mono); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  transition: transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 1px 0 rgba(0,0,0,.06), inset 0 -2px 0 rgba(0,0,0,.08);
+}
+.btn--primary:hover { filter: brightness(1.05); }
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--secondary:hover { background: var(--ink); color: var(--bg); }
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+.btn--ghost:hover { border-color: var(--ink); }
+.btn--sm { padding: 10px 16px; font-size: 13.5px; }
+.btn--lg { padding: 18px 28px; font-size: 16px; }
+
+/* Section */
+.section {
+  padding: clamp(56px, 8vw, 112px) 0;
+}
+.section--tight { padding: clamp(40px, 5vw, 72px) 0; }
+.section--alt { background: var(--bg-section); }
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.section-head h2 { max-width: 24ch; }
+
+/* PCB trace divider */
+.pcb-rule {
+  height: 1px;
+  background: var(--line);
+  position: relative;
+}
+.pcb-rule::before, .pcb-rule::after {
+  content: "";
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.pcb-rule::before { left: 12%; }
+.pcb-rule::after { right: 18%; background: var(--ink); }
+
+/* Protoboard pattern bg utility */
+.proto-bg {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(20,18,15,.08) 1px, transparent 0);
+  background-size: 14px 14px;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--bg);
+}
+.badge--accent { background: var(--accent); color: var(--accent-ink); }
+.badge--led    { background: var(--led); color: #2A2200; }
+.badge--hot    { background: var(--hot); color: #fff; }
+.badge--soft   { background: var(--accent-soft); color: var(--accent-ink); }
+.badge--out    { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+
+/* Chip */
+.chip {
+  display: inline-flex; align-items:center; gap:6px;
+  padding: 6px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 12.5px;
+  background: var(--bg-elev);
+  color: var(--ink-soft);
+}
+
+/* Card baseline */
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover { border-color: var(--line-strong); box-shadow: var(--sh-md); }
+
+/* Image placeholder (striped) */
+.ph {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, rgba(20,18,15,.05) 0 8px, transparent 8px 18px),
+    var(--bg-section);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 12px;
+}
+.ph--dark {
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 8px, transparent 8px 18px),
+    #181614;
+  color: rgba(255,255,255,.55);
+}
+.ph::after {
+  /* corner ticks */
+  content: "";
+  position: absolute; inset: 8px;
+  border: 1px dashed rgba(20,18,15,.18);
+  pointer-events: none;
+}
+.ph--dark::after { border-color: rgba(255,255,255,.18); }
+
+/* Form */
+input[type="text"], input[type="email"], input[type="search"] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 13px 16px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  color: var(--ink);
+  outline: none;
+  width: 100%;
+  transition: border-color .15s ease;
+}
+input:focus { border-color: var(--ink); }
+
+/* Visually hidden */
+.sr {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+
+/* MAKERLAB — Component-specific styles */
+
+/* =========================================
+   NAV
+========================================= */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(247, 244, 238, 0.86);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: padding .2s ease, border-color .2s ease, background .2s ease;
+}
+.nav.is-scrolled {
+  border-bottom-color: var(--line);
+  background: rgba(247, 244, 238, 0.94);
+}
+.nav__inner {
+  display: flex; align-items: center; gap: 24px;
+  padding: 16px 28px;
+}
+.nav.is-scrolled .nav__inner { padding-top: 12px; padding-bottom: 12px; }
+.nav__links {
+  display: flex; gap: 4px; flex: 1;
+  margin-left: 24px;
+}
+.nav__link {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: background .15s ease, color .15s ease;
+}
+.nav__link:hover { background: var(--bg-section); color: var(--ink); }
+
+.nav__actions { display: flex; align-items: center; gap: 8px; }
+.nav__search {
+  position: relative;
+  display: flex; align-items: center;
+  width: 280px;
+}
+.nav__search svg { position: absolute; left: 14px; color: var(--ink-mute); }
+.nav__search input {
+  padding-left: 40px;
+  font-size: 14px;
+  height: 40px;
+  background: var(--bg-section);
+  border-color: transparent;
+}
+.nav__search input:focus { background: var(--bg-elev); border-color: var(--ink); }
+.nav__search--full { width: 100%; }
+.nav__search--full input { background: var(--bg-elev); border-color: var(--line-strong); }
+
+.nav__icon {
+  position: relative;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink);
+  transition: background .15s ease;
+}
+.nav__icon:hover { background: var(--bg-section); }
+.nav__cart-badge {
+  position: absolute;
+  top: 4px; right: 2px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 700;
+  border-radius: 999px;
+  padding: 2px 5px;
+  min-width: 16px; text-align: center;
+  line-height: 1;
+}
+.nav__mobile-toggle { display: none; }
+
+@media (max-width: 1024px) {
+  .nav__links, .nav__search { display: none; }
+  .nav__mobile-toggle { display: inline-flex; }
+}
+
+.nav__mobile {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+}
+.nav__mobile-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.nav__mobile-head button {
+  width: 40px; height: 40px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-section);
+}
+.nav__mobile-links {
+  display: flex; flex-direction: column;
+  padding: 12px 24px;
+  flex: 1;
+}
+.nav__mobile-links a {
+  padding: 18px 4px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid var(--line);
+}
+
+/* =========================================
+   HERO
+========================================= */
+.hero {
+  position: relative;
+  padding: clamp(48px, 7vw, 96px) 0 clamp(56px, 8vw, 120px);
+  overflow: hidden;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 960px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+}
+.hero__eyebrow { margin-bottom: 22px; }
+.hero h1 .accent {
+  background: linear-gradient(180deg, transparent 60%, var(--accent) 60%);
+  padding: 0 4px;
+  color: var(--ink);
+}
+.hero__sub {
+  margin-top: 24px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: var(--ink-soft);
+  max-width: 52ch;
+  line-height: 1.55;
+}
+.hero__ctas {
+  margin-top: 36px;
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.hero__trust {
+  margin-top: 36px;
+  display: flex; gap: 24px; flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px dashed var(--line-strong);
+}
+.hero__trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.hero__trust-item svg { color: var(--accent); }
+
+/* Hero visual */
+.hero__visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(11,176,123,.18), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255,200,0,.12), transparent 50%),
+    var(--pcb);
+  color: var(--pcb-ink);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.hero__visual-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.hero__visual-trace {
+  position: absolute;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0.55;
+}
+.hero__visual-chip {
+  position: absolute;
+  background: #0F0E0C;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  color: rgba(255,255,255,.4);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.hero__visual-label {
+  position: absolute;
+  bottom: 18px; left: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,.6);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero__visual-tag {
+  position: absolute;
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--accent);
+}
+.hero__visual-tag::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* Hero photo variant */
+.hero--photo .hero__visual { background: var(--bg-section); }
+.hero--photo .hero__visual-grid { display: none; }
+.hero--photo .hero__visual-photo {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(135deg, rgba(20,18,15,.05) 0 8px, transparent 8px 18px),
+    var(--bg-section);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--ink-mute); letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* =========================================
+   TRUST STRIP
+========================================= */
+.trust-strip {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 22px 0;
+}
+.trust-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+@media (max-width: 880px) {
+  .trust-strip__grid { grid-template-columns: repeat(2, 1fr); gap: 18px 24px; }
+}
+.trust {
+  display: flex; gap: 14px;
+  align-items: center;
+}
+.trust__icon {
+  flex: 0 0 44px;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.trust__title { font-weight: 600; font-size: 14.5px; }
+.trust__desc { font-size: 12.5px; color: rgba(247,244,238,.6); }
+
+/* =========================================
+   CATEGORIES
+========================================= */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 880px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .cat-grid { grid-template-columns: 1fr; } }
+
+.cat-tile {
+  display: flex; flex-direction: column;
+  padding: 24px;
+  min-height: 200px;
+  justify-content: space-between;
+  background: var(--bg-elev);
+  position: relative;
+}
+.cat-tile__icon {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.cat-tile h3 {
+  font-size: 22px; margin-top: 16px; margin-bottom: 6px;
+}
+.cat-tile span { color: var(--ink-mute); font-size: 13px; }
+.cat-tile:hover .cat-tile__icon { background: var(--accent); }
+
+/* =========================================
+   PRODUCT GRID
+========================================= */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.product-card { display: flex; flex-direction: column; }
+.product-card__media {
+  aspect-ratio: 1;
+  position: relative;
+}
+.product-card__badges {
+  position: absolute;
+  top: 12px; left: 12px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.product-card__body {
+  padding: 16px 16px 18px;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.product-card__sku {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.product-card__name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  margin: 6px 0 14px;
+  line-height: 1.3;
+  flex: 1;
+}
+.product-card__foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
+}
+.product-card__price {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* =========================================
+   KITS
+========================================= */
+.kits-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+.kits-grid__col {
+  display: grid;
+  gap: 16px;
+}
+.kits-grid__col--featured { grid-template-rows: 1fr; }
+.kits-grid__col--small { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+@media (max-width: 1024px) {
+  .kits-grid { grid-template-columns: 1fr; }
+  .kits-grid__col--small { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .kits-grid__col--small { grid-template-columns: 1fr; }
+}
+
+.kit-card {
+  display: flex; flex-direction: column;
+  background: var(--bg-elev);
+}
+.kit-card--featured { min-height: 540px; }
+.kit-card__media {
+  position: relative;
+  aspect-ratio: 16/10;
+  flex: 0 0 auto;
+}
+.kit-card--featured .kit-card__media { aspect-ratio: 16/11; }
+.kit-card__level {
+  position: absolute; top: 14px; left: 14px;
+}
+.kit-card__body {
+  padding: 22px 22px 24px;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+.kit-card--featured .kit-card__body { padding: 32px 32px 36px; gap: 18px; }
+.kit-card__meta {
+  font-size: 11.5px;
+  color: var(--ink-mute);
+  display: flex; gap: 8px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.kit-card__name {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.kit-card--featured .kit-card__name { font-size: 36px; line-height: 1.05; }
+.kit-card__blurb { color: var(--ink-soft); font-size: 15px; max-width: 50ch; }
+.kit-card__foot {
+  margin-top: auto;
+  display: flex; align-items: end; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.kit-card__price-label {
+  font-size: 11px; color: var(--ink-mute); text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.kit-card__price-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: 2px;
+}
+.kit-card--featured .kit-card__price-value { font-size: 32px; }
+.kit-card__ctas { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* =========================================
+   POSTS
+========================================= */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 880px) { .posts-grid { grid-template-columns: 1fr; } }
+
+.post-card { display: flex; flex-direction: column; color: inherit; }
+.post-card__media { aspect-ratio: 16/10; }
+.post-card__body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.post-card__meta { display: flex; align-items: center; gap: 10px; }
+.post-card__title { font-size: 20px; line-height: 1.25; flex: 1; }
+.post-card__related {
+  display: flex; flex-direction: column; gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.post-card__thumbs { display: flex; gap: 6px; align-items: center; }
+.post-card__thumb {
+  width: 36px; height: 36px;
+  border-radius: 6px;
+  font-size: 9px !important;
+}
+.post-card__thumb::after { display: none; }
+.post-card__thumbs-more {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-left: 4px;
+}
+
+/* =========================================
+   COMMUNITY
+========================================= */
+.community-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 1024px) { .community-grid { grid-template-columns: 1fr 1fr; } .community__showcase { grid-column: 1 / -1; } }
+@media (max-width: 640px)  { .community-grid { grid-template-columns: 1fr; } .community__showcase { grid-column: auto; } }
+
+.community__showcase {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px;
+}
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+}
+.showcase-grid .ph { aspect-ratio: 1; border-radius: 8px; font-size: 9px; }
+.showcase-grid .ph::after { inset: 4px; }
+.showcase-grid .ph:nth-child(1) { grid-row: span 2; aspect-ratio: 1/2.05; }
+
+.community__discord, .community__events {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.community__discord {
+  background: linear-gradient(160deg, var(--pcb), #1a1916);
+  color: var(--pcb-ink);
+  border-color: rgba(255,255,255,.06);
+}
+.community__discord h3, .community__events h3 { font-size: 22px; }
+.community__discord h3 { color: #F7F4EE; }
+.avatar-stack { display: flex; }
+.avatar-stack > div {
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  border: 2px solid var(--pcb);
+  margin-left: -8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  color: var(--accent-ink);
+}
+.avatar-stack > div:first-child { margin-left: 0; }
+.avatar-stack > div:nth-child(2) { background: #F2C200; color:#2A2200; }
+.avatar-stack > div:nth-child(3) { background: #E14B3A; color: #fff; }
+.avatar-stack > div:nth-child(4) { background: #C5BEAE; color: #1A1714; }
+.avatar-stack > div:nth-child(5) { background: rgba(255,255,255,.1); color: #C5BEAE; border: 1px dashed rgba(255,255,255,.2); }
+
+.event-item {
+  display: flex; gap: 14px; padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.event-item:last-child { border-bottom: 0; }
+.event-item__date {
+  flex: 0 0 56px;
+  text-align: center;
+  background: var(--bg-section);
+  border-radius: 8px;
+  padding: 8px 4px;
+  font-family: var(--font-mono);
+}
+.event-item__date b { display: block; font-size: 18px; color: var(--ink); }
+.event-item__date span { font-size: 10px; text-transform: uppercase; color: var(--ink-mute); }
+.event-item__body { flex: 1; }
+.event-item__title { font-weight: 600; font-size: 14.5px; margin-bottom: 4px; }
+.event-item__meta { font-size: 12px; color: var(--ink-mute); }
+
+/* =========================================
+   WHY US
+========================================= */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1024px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px)  { .why-grid { grid-template-columns: 1fr; } }
+.why-item {
+  border-top: 2px solid var(--ink);
+  padding-top: 20px;
+}
+.why-item__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.why-item__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.why-item__desc { color: var(--ink-soft); font-size: 14.5px; }
+
+/* =========================================
+   NEWSLETTER
+========================================= */
+.newsletter {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--r-xl);
+  padding: clamp(40px, 6vw, 72px);
+  position: relative;
+  overflow: hidden;
+}
+.newsletter::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+}
+.newsletter__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 880px) { .newsletter__inner { grid-template-columns: 1fr; } }
+.newsletter h2 { color: var(--accent-ink); }
+.newsletter p { color: var(--accent-ink); opacity: .8; margin-top: 14px; max-width: 44ch; }
+.newsletter__form {
+  display: flex; gap: 8px;
+}
+.newsletter__form input {
+  background: var(--bg);
+  border-color: transparent;
+  color: var(--ink);
+  height: 52px;
+  font-size: 15px;
+}
+.newsletter__form button {
+  height: 52px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.newsletter__form button:hover { background: var(--pcb); }
+.newsletter__lead {
+  background: rgba(0,0,0,.06);
+  padding: 16px;
+  border-radius: var(--r-md);
+  margin-top: 20px;
+  display: flex; gap: 12px;
+  font-size: 13.5px;
+}
+.newsletter__lead-pdf {
+  flex: 0 0 60px;
+  height: 80px;
+  background: var(--bg);
+  color: var(--accent);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   FAQ
+========================================= */
+.faq-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 880px) { .faq-wrap { grid-template-columns: 1fr; gap: 24px; } }
+.faq-list {
+  border-top: 1px solid var(--line-strong);
+}
+.acc {
+  border-bottom: 1px solid var(--line-strong);
+}
+.acc__head {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 4px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+.acc__plus {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--bg-section);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform .2s ease, background .2s ease;
+  flex: 0 0 32px;
+}
+.acc.is-open .acc__plus { transform: rotate(45deg); background: var(--accent); color: var(--accent-ink); }
+.acc__body {
+  padding: 0 4px 24px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  max-width: 70ch;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer {
+  background: var(--pcb);
+  color: var(--pcb-ink);
+  padding: 80px 0 32px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  gap: 32px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+@media (max-width: 1024px) { .footer__top { grid-template-columns: 1fr 1fr; } .footer__brand { grid-column: 1 / -1; } }
+@media (max-width: 600px)  { .footer__top { grid-template-columns: 1fr; gap: 24px; } }
+
+.footer__brand p { margin-top: 16px; max-width: 30ch; font-size: 14px; opacity: .7; }
+.footer__col h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 18px;
+}
+.footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer__col a { font-size: 14px; color: var(--pcb-ink); }
+.footer__col a:hover { color: var(--accent); }
+
+.footer__bottom {
+  padding-top: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,.5);
+  font-family: var(--font-mono);
+}
+.footer__social { display: flex; gap: 8px; }
+.footer__social a {
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+  color: var(--pcb-ink);
+}
+.footer__social a:hover { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+.footer__pay { display: flex; gap: 6px; align-items: center; }
+.footer__pay-pill {
+  padding: 4px 9px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+/* =========================================
+   PAGES INTERNAS
+========================================= */
+
+/* CATALOGO */
+.catalog-page { display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+@media (max-width: 880px) { .catalog-page { grid-template-columns: 1fr; } }
+.filters {
+  position: sticky; top: 96px;
+  align-self: start;
+  font-size: 14px;
+}
+.filters__group { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.filters__group:first-child { padding-top: 0; }
+.filters__group h4 {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 12px;
+  font-weight: 500;
+}
+.filters label { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; }
+.filters label input { accent-color: var(--accent); }
+.filters .price-range { display: flex; gap: 8px; align-items: center; }
+.filters .price-range input { padding: 8px 10px; font-size: 13px; height: auto; }
+.catalog-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.catalog-toolbar__chips { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* KIT DETALLE */
+.kit-page { display: grid; grid-template-columns: 1fr 380px; gap: 40px; }
+@media (max-width: 1024px) { .kit-page { grid-template-columns: 1fr; } }
+.kit-page__hero {
+  aspect-ratio: 16/10;
+  border-radius: var(--r-lg);
+  margin-bottom: 32px;
+}
+.kit-page__buy {
+  position: sticky; top: 96px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  align-self: start;
+}
+.kit-page__buy h3 { font-size: 28px; margin-bottom: 8px; letter-spacing: -0.02em; }
+.kit-page__price { font-family: var(--font-mono); font-size: 32px; font-weight: 700; margin: 16px 0; }
+.kit-page__price small { font-size: 13px; color: var(--ink-mute); font-weight: 400; display:block; }
+
+.bom-list { list-style: none; padding: 0; margin: 0; }
+.bom-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 80px 100px;
+  gap: 12px; align-items: center;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.bom-row .ph { width: 48px; height: 48px; border-radius: 6px; font-size: 8px; }
+.bom-row .ph::after { display: none; }
+.bom-row__qty { font-family: var(--font-mono); color: var(--ink-mute); font-size: 13px; }
+.bom-row__price { font-family: var(--font-mono); font-weight: 600; text-align: right; }
+
+.steps { counter-reset: step; }
+.step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+}
+.step__num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-mute);
+  letter-spacing: 0.06em;
+}
+.step__num::before { content: "STEP "; }
+.step h3 { font-size: 24px; margin-bottom: 12px; letter-spacing: -0.02em; }
+.step p { color: var(--ink-soft); margin-bottom: 14px; }
+.step .ph { aspect-ratio: 16/9; border-radius: var(--r-md); margin-top: 12px; }
+.code {
+  background: var(--pcb);
+  color: #C8E6D6;
+  padding: 18px 22px;
+  border-radius: var(--r-md);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin-top: 12px;
+}
+.code .com { color: rgba(255,255,255,.4); }
+.code .kw { color: #F2C200; }
+.code .fn { color: #07B6D5; }
+
+/* TUTORIAL */
+.tut-page { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; }
+@media (max-width: 1024px) { .tut-page { grid-template-columns: 1fr; } }
+.tut-content h2 { margin-top: 48px; margin-bottom: 16px; }
+.tut-content p { color: var(--ink-soft); margin-bottom: 16px; font-size: 16px; line-height: 1.65; }
+.tut-aside {
+  position: sticky; top: 96px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  align-self: start;
+}
+.tut-aside h4 {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-mute);
+  margin-bottom: 14px;
+}
+.tut-aside__list { display: flex; flex-direction: column; gap: 12px; }
+.tut-aside__item { display: flex; gap: 12px; align-items: center; }
+.tut-aside__item .ph { width: 44px; height: 44px; border-radius: 6px; font-size: 8px; }
+.tut-aside__item .ph::after { display: none; }
+.tut-aside__item-info { flex: 1; min-width: 0; }
+.tut-aside__item-name { font-size: 13px; font-weight: 500; line-height: 1.3; }
+.tut-aside__item-price { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); }
+
+/* CARRITO */
+.cart-page { display: grid; grid-template-columns: 1fr 360px; gap: 32px; }
+@media (max-width: 880px) { .cart-page { grid-template-columns: 1fr; } }
+.cart-row {
+  display: grid;
+  grid-template-columns: 96px 1fr auto auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cart-row .ph { width: 96px; height: 96px; border-radius: var(--r-md); font-size: 9px; }
+.cart-row .ph::after { display: none; }
+.cart-row__name { font-weight: 600; }
+.cart-row__sku { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); }
+.qty {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.qty button { width: 32px; height: 32px; }
+.qty button:hover { background: var(--bg-section); }
+.qty span { width: 28px; text-align: center; font-family: var(--font-mono); }
+.cart-row__price { font-family: var(--font-mono); font-weight: 600; min-width: 90px; text-align: right; }
+
+.cart-summary {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  position: sticky; top: 96px;
+  align-self: start;
+}
+.cart-summary h3 { font-size: 22px; margin-bottom: 18px; }
+.cart-summary__row {
+  display: flex; justify-content: space-between; padding: 8px 0;
+  font-family: var(--font-mono); font-size: 14px;
+}
+.cart-summary__row--total {
+  border-top: 1px solid var(--line); margin-top: 12px; padding-top: 16px;
+  font-size: 18px; font-weight: 700;
+}
+.cart-summary__row--total .label { font-family: var(--font-display); }
+.cart-promo {
+  display: flex; gap: 6px; margin: 16px 0;
+}
+.cart-promo input { height: 40px; font-size: 13px; }
+
+/* Page header */
+.page-head { padding: clamp(40px, 6vw, 80px) 0 clamp(24px, 3vw, 40px); }
+.page-head__crumbs {
+  font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute);
+  margin-bottom: 16px; letter-spacing: 0.04em;
+}
+.page-head__crumbs a:hover { color: var(--ink); }
+.page-head h1 { font-size: clamp(36px, 5vw, 60px); }
+
+/* Tweaks panel quirk */
+.tweaks-panel-host {
+  z-index: 200;
+}
+
+.view{display:none}
+.view.is-active{display:block}
+</style>
+</head>
+<body data-screen-label="Home">
+<div id="root"><div style="background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; padding: 8px 16px; text-align: center;"><span style="opacity: 0.6;">// </span>Envío gratis en compras +$80.000 a todo el país · Despacho en 24h<span style="opacity: 0.6;"> //</span></div><header class="nav "><div class="container nav__inner"><a href="#home" class="logo" aria-label="MAKERLAB inicio" style="display: inline-flex; align-items: center; gap: 10px;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="6" fill="var(--accent)"></rect><path d="M9 22 V10 L13 16 L17 10 V22" stroke="var(--accent-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="22" cy="11" r="1.6" fill="var(--accent-ink)"></circle><path d="M22 13 V21" stroke="var(--accent-ink)" stroke-width="2.2" stroke-linecap="round"></path></svg><span style="font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; font-size: 18px; color: var(--ink);">MAKERLAB</span></a><nav class="nav__links" aria-label="Principal"><a href="#catalogo" class="nav__link">Catálogo</a><a href="#nosotros" class="nav__link">Nosotros</a></nav><div class="nav__actions"><div class="nav__search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input type="search" placeholder="Buscar componentes, kits..." aria-label="Buscar"></div><button class="nav__icon" aria-label="Cuenta"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg></button><a class="nav__icon nav__cart" href="#carrito" aria-label="Carrito (3)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2.4 12.1a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.5L22 8H6"></path><circle cx="10" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle></svg><span class="nav__cart-badge">3</span></a><button class="nav__icon nav__mobile-toggle" aria-label="Menú"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div></div></header>
+<div id="views">
+<div class="view is-active" id="view-home"><main><section class="hero "><div class="container hero__grid"><div><div class="eyebrow hero__eyebrow">// Tienda maker · Argentina</div><h1>Arduino, Raspberry Pi y todo lo que <span class="accent">tu próximo proyecto</span> necesita para existir.</h1><p class="hero__sub">Componentes con stock real, precios claros y envíos a todo el país. Todo lo que necesitás, en un solo lugar.</p><div class="hero__ctas"><a class="btn btn--primary btn--lg" href="#catalogo">Ver catálogo <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="hero__trust"><div class="hero__trust-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="m12 2 2.9 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8 5.6 21.7l1.7-7.3L1.7 9.5l7.4-.6z"></path></svg> <span><b>4.9</b> · 1.247 pedidos</span></div><div class="hero__trust-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h5l3 3v3h-8z"></path><circle cx="6" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg> Envíos a todo el país</div><div class="hero__trust-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"></path></svg> Soporte técnico real</div></div></div><div class="hero__visual"><div class="hero__visual-grid"></div><div class="hero__visual-photo" style="background: rgba(0, 0, 0, 0.2); color: rgba(255, 255, 255, 0.55);">▶ VIDEO LOOP · PROYECTO EN VIVO</div><span class="hero__visual-label">/ live.mp4 · 0:08</span></div></div></section><section class="trust-strip"><div class="container trust-strip__grid"><div class="trust"><div class="trust__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h5l3 3v3h-8z"></path><circle cx="6" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg></div><div><div class="trust__title">Envíos a todo el país</div><div class="trust__desc">Andreani · Correo Argentino</div></div></div><div class="trust"><div class="trust__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20M6 15h3"></path></svg></div><div><div class="trust__title">Pagás como quieras</div><div class="trust__desc">MercadoPago, transferencia, tarjetas</div></div></div><div class="trust"><div class="trust__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg></div><div><div class="trust__title">Stock real, despacho 24h</div><div class="trust__desc">Lo que ves disponible, sale hoy</div></div></div><div class="trust"><div class="trust__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"></path></svg></div><div><div class="trust__title">Asesoramiento técnico</div><div class="trust__desc">¿Necesitás ayuda eligiendo? Escribinos</div></div></div></div></section><section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">// Por dónde empezar</div><h2 style="margin-top: 14px;">Navegá por categoría</h2></div><a class="btn btn--ghost btn--sm" href="#catalogo">Ver todo el catálogo <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="cat-grid"><a class="cat-tile card" href="#catalogo"><div class="cat-tile__icon"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="8" y="8" width="16" height="16" rx="1"></rect><path d="M12 12h8v8h-8z"></path><path d="M4 12h4M4 16h4M4 20h4M24 12h4M24 16h4M24 20h4M12 4v4M16 4v4M20 4v4M12 24v4M16 24v4M20 24v4"></path></svg></div><div class="cat-tile__body"><h3>Placas Arduino</h3><span class="mono">24 productos →</span></div></a><a class="cat-tile card" href="#catalogo"><div class="cat-tile__icon"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="6" width="26" height="20" rx="1.5"></rect><circle cx="9" cy="12" r="1.5"></circle><circle cx="9" cy="20" r="1.5"></circle><rect x="14" y="9" width="6" height="6" rx="0.5"></rect><rect x="22" y="10" width="4" height="3"></rect><rect x="22" y="16" width="4" height="3"></rect><rect x="14" y="18" width="9" height="2"></rect></svg></div><div class="cat-tile__body"><h3>Raspberry Pi</h3><span class="mono">18 productos →</span></div></a><a class="cat-tile card" href="#catalogo"><div class="cat-tile__icon"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="16" cy="16" r="6"></circle><path d="M16 4v3M16 25v3M4 16h3M25 16h3M7.5 7.5l2 2M22.5 22.5l2 2M7.5 24.5l2-2M22.5 9.5l2-2"></path></svg></div><div class="cat-tile__body"><h3>Sensores</h3><span class="mono">86 productos →</span></div></a><a class="cat-tile card" href="#catalogo"><div class="cat-tile__icon"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="16" cy="16" r="8"></circle><path d="M16 10v12M10 16h12M11.8 11.8l8.4 8.4M11.8 20.2l8.4-8.4"></path></svg></div><div class="cat-tile__body"><h3>Actuadores y motores</h3><span class="mono">42 productos →</span></div></a><a class="cat-tile card" href="#catalogo"><div class="cat-tile__icon"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12c6-6 16-6 22 0M9 16c4-4 10-4 14 0M13 20c2-2 4-2 6 0"></path><circle cx="16" cy="24" r="1.4" fill="currentColor"></circle></svg></div><div class="cat-tile__body"><h3>Comunicación</h3><span class="mono">31 productos →</span></div></a><a class="cat-tile card" href="#catalogo"><div class="cat-tile__icon"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l4 4-8 8-4-4z"></path><path d="M18 8l8 8-4 4-8-8"></path><circle cx="22" cy="20" r="3"></circle></svg></div><div class="cat-tile__body"><h3>Accesorios y herramientas</h3><span class="mono">124 productos →</span></div></a></div></div></section><section class="section section--alt"><div class="container"><div class="section-head"><div><div class="eyebrow">// Lo que más se mueve</div><h2 style="margin-top: 14px;">Bestsellers de la semana</h2></div><div style="display: flex; gap: 8px;"><a class="btn btn--ghost btn--sm" href="#catalogo">Ver más populares</a></div></div><div class="product-grid"><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--accent">Bestseller</span></div></div><div class="product-card__body"><div class="product-card__sku">ARD-UNO-R3</div><h3 class="product-card__name">Arduino UNO R3 Original</h3><div class="product-card__foot"><div class="product-card__price">$32.500</div><button class="btn btn--primary btn--sm" aria-label="Sumar Arduino UNO R3 Original al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--led">Nuevo</span></div></div><div class="product-card__body"><div class="product-card__sku">RPI-5-8GB</div><h3 class="product-card__name">Raspberry Pi 5 · 8 GB RAM</h3><div class="product-card__foot"><div class="product-card__price">$168.000</div><button class="btn btn--primary btn--sm" aria-label="Sumar Raspberry Pi 5 · 8 GB RAM al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">ESP32-DEV</div><h3 class="product-card__name">ESP32 DevKit V1 · WiFi + BT</h3><div class="product-card__foot"><div class="product-card__price">$14.900</div><button class="btn btn--primary btn--sm" aria-label="Sumar ESP32 DevKit V1 · WiFi + BT al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--hot">Stock bajo</span></div></div><div class="product-card__body"><div class="product-card__sku">SEN-DHT22</div><h3 class="product-card__name">Sensor DHT22 temperatura/humedad</h3><div class="product-card__foot"><div class="product-card__price">$5.800</div><button class="btn btn--primary btn--sm" aria-label="Sumar Sensor DHT22 temperatura/humedad al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--soft">Combo</span></div></div><div class="product-card__body"><div class="product-card__sku">KIT-PROTO</div><h3 class="product-card__name">Protoboard 830 puntos + jumpers</h3><div class="product-card__foot"><div class="product-card__price">$8.200</div><button class="btn btn--primary btn--sm" aria-label="Sumar Protoboard 830 puntos + jumpers al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">MOT-SG90</div><h3 class="product-card__name">Servomotor SG90 · 9g</h3><div class="product-card__foot"><div class="product-card__price">$3.400</div><button class="btn btn--primary btn--sm" aria-label="Sumar Servomotor SG90 · 9g al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">MOD-HC05</div><h3 class="product-card__name">Módulo Bluetooth HC-05</h3><div class="product-card__foot"><div class="product-card__price">$6.900</div><button class="btn btn--primary btn--sm" aria-label="Sumar Módulo Bluetooth HC-05 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--accent">Bestseller</span></div></div><div class="product-card__body"><div class="product-card__sku">OLED-128</div><h3 class="product-card__name">Display OLED 0.96" I²C 128×64</h3><div class="product-card__foot"><div class="product-card__price">$7.200</div><button class="btn btn--primary btn--sm" aria-label="Sumar Display OLED 0.96&quot; I²C 128×64 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article></div></div></section><section class="section section--alt" id="nosotros"><div class="container"><div class="section-head"><div><div class="eyebrow">// Por qué comprarnos</div><h2 style="margin-top: 14px; max-width: 18ch;">Una tienda hecha por makers, para makers.</h2></div></div><div class="why-grid"><div class="why-item"><div class="why-item__num">01 ───</div><h3 class="why-item__title">Stock real, no pre-order</h3><p class="why-item__desc">Lo que ves disponible, lo despachamos hoy. Sin esperas mágicas de 30 días.</p></div><div class="why-item"><div class="why-item__num">02 ───</div><h3 class="why-item__title">Asesoramiento de makers</h3><p class="why-item__desc">¿No sabés qué sensor usar? Te ayudamos a elegir, no a vender.</p></div><div class="why-item"><div class="why-item__num">03 ───</div><h3 class="why-item__title">Garantía sin vueltas</h3><p class="why-item__desc">Si algo llega fallado, lo cambiamos dentro de los 30 días. Sin formularios eternos.</p></div><div class="why-item"><div class="why-item__num">04 ───</div><h3 class="why-item__title">Atención posventa real</h3><p class="why-item__desc">Te responde una persona que sabe de electrónica, no un bot.</p></div></div></div></section><section class="section section--tight"><div class="container"><div class="newsletter"><div class="newsletter__inner"><div><div class="eyebrow" style="color: var(--accent-ink); opacity: 0.7;">// Newsletter</div><h2 style="margin-top: 14px;">Ofertas, ingresos nuevos y descuentos.</h2><p>1 mail por semana, cero spam. Te bajás también nuestra guía gratis "Tu primer proyecto con Arduino en 1 hora".</p></div><div><form class="newsletter__form"><input type="email" placeholder="tu@email.com" aria-label="Email"><button>Suscribirme</button></form><div class="newsletter__lead"><div class="newsletter__lead-pdf">PDF<br>·48p·</div><div><b>Guía: tu primer proyecto Arduino en 1 hora</b><br><span style="opacity: 0.75;">Hardware mínimo, código comentado, debugging básico. Gratis al suscribirte.</span></div></div></div></div></div></div></section><section class="section"><div class="container"><div class="faq-wrap"><div><div class="eyebrow">// Preguntas frecuentes</div><h2 style="margin-top: 14px;">Lo que la gente pregunta antes de comprar.</h2><p style="margin-top: 18px; color: var(--ink-soft);">¿No encontrás tu duda? <a href="#" style="border-bottom: 1px solid var(--ink);">Escribinos directo</a>.</p></div><div class="faq-list"><div class="acc is-open"><button class="acc__head" aria-expanded="true"><span>¿Hacen envíos a todo el país? ¿Cuánto tarda?</span><span class="acc__plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="acc__body">Sí, despachamos por Andreani y Correo Argentino a todo el país. CABA y GBA: 24-48hs. Interior: 3-5 días hábiles. Tenés tracking en tiempo real desde tu cuenta.</div></div><div class="acc "><button class="acc__head" aria-expanded="false"><span>¿Cuáles son las formas de pago?</span><span class="acc__plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button></div><div class="acc "><button class="acc__head" aria-expanded="false"><span>¿Tienen factura A/B?</span><span class="acc__plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button></div><div class="acc "><button class="acc__head" aria-expanded="false"><span>¿Qué pasa si llega defectuoso?</span><span class="acc__plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button></div><div class="acc "><button class="acc__head" aria-expanded="false"><span>¿Tienen retiro en local? ¿Dónde?</span><span class="acc__plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button></div><div class="acc "><button class="acc__head" aria-expanded="false"><span>¿Hacen pedidos a medida o cantidades grandes?</span><span class="acc__plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button></div></div></div></div></section></main></div>
+<div class="view" id="view-catalogo"><header class="page-head"><div class="container"><div class="page-head__crumbs"><a href="#home">Inicio</a> / Catálogo</div><h1>Catálogo completo</h1><p style="margin-top: 14px; color: var(--ink-soft); max-width: 52ch;">24 productos en stock · Despachamos hoy lo que pidas antes de las 16hs.</p></div></header><section style="padding-bottom: 96px;"><div class="container catalog-page"><aside class="filters"><div class="filters__group"><h4>Categoría</h4><label><input type="checkbox"> Placas Arduino <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">3</span></label><label><input type="checkbox"> placas arduino <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Placas <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Placas Raspberry Pi <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> RASPBERRY <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Sensores <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">2</span></label><label><input type="checkbox"> sensores <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> SENSORES Y MODULOS <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Modulos <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Modulos y comunicacion <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Actuadores <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">2</span></label><label><input type="checkbox"> Actuadores y motores <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label><label><input type="checkbox"> Accesorios <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">7</span></label><label><input type="checkbox"> accesorios <span class="mono" style="margin-left: auto; color: var(--ink-mute); font-size: 12px;">1</span></label></div><div class="filters__group"><h4>Marca</h4><label><input type="checkbox"> Arduino oficial</label><label><input type="checkbox"> Raspberry Pi Foundation</label><label><input type="checkbox"> Adafruit</label><label><input type="checkbox"> SparkFun</label><label><input type="checkbox"> Genérico compatible</label></div><div class="filters__group"><h4>Precio (ARS)</h4><div class="price-range"><input placeholder="Mín" value="2.000"><span class="mono" style="color: var(--ink-mute);">—</span><input placeholder="Máx" value="200.000"></div></div><div class="filters__group"><h4>Stock</h4><label><input type="checkbox" checked=""> En stock</label><label><input type="checkbox"> Pre-order</label></div><div class="filters__group"><h4>Compatibilidad</h4><label><input type="checkbox"> Arduino UNO</label><label><input type="checkbox"> Raspberry Pi 5</label><label><input type="checkbox"> ESP32</label><label><input type="checkbox"> 3.3V lógica</label></div></aside><div><div class="catalog-toolbar"><div class="catalog-toolbar__chips"><span class="chip">Placas Arduino ✕</span><span class="chip">En stock ✕</span><button class="mono" style="font-size: 12px; color: var(--ink-mute); text-decoration: underline;">Limpiar filtros</button></div><div style="display: flex; gap: 12px; align-items: center; font-size: 13px;"><span class="mono" style="color: var(--ink-mute);">24 productos</span><select style="padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--bg-elev); font-family: inherit; font-size: 13px;"><option>Relevancia</option><option>Más vendidos</option><option>Precio: menor a mayor</option><option>Precio: mayor a menor</option><option>Nuevos primero</option></select></div></div><div class="product-grid"><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">ARD-UNO-R3</div><h3 class="product-card__name">Arduino UNO R3</h3><div class="product-card__foot"><div class="product-card__price">$28500</div><button class="btn btn--primary btn--sm" aria-label="Sumar Arduino UNO R3 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">ARD-NANO</div><h3 class="product-card__name">Arduino Nano</h3><div class="product-card__foot"><div class="product-card__price">$24.900</div><button class="btn btn--primary btn--sm" aria-label="Sumar Arduino Nano al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--warning">Stock bajo</span></div></div><div class="product-card__body"><div class="product-card__sku">ARD-MEGA</div><h3 class="product-card__name">Arduino Mega 2560</h3><div class="product-card__foot"><div class="product-card__price">$52300</div><button class="btn btn--primary btn--sm" aria-label="Sumar Arduino Mega 2560 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">ESP-NODEMCU</div><h3 class="product-card__name">NodeMCU ESP8266</h3><div class="product-card__foot"><div class="product-card__price">$19800</div><button class="btn btn--primary btn--sm" aria-label="Sumar NodeMCU ESP8266 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--warning">Stock bajo</span></div></div><div class="product-card__body"><div class="product-card__sku">RPI-4B-4GB</div><h3 class="product-card__name">Raspberry Pi 4B 4GB</h3><div class="product-card__foot"><div class="product-card__price">$145000</div><button class="btn btn--primary btn--sm" aria-label="Sumar Raspberry Pi 4B 4GB al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--danger">Sin stock</span></div></div><div class="product-card__body"><div class="product-card__sku">RPI-ZERO-W</div><h3 class="product-card__name">Raspberry Pi Zero W</h3><div class="product-card__foot"><div class="product-card__price">$38.000</div><button class="btn btn--primary btn--sm" aria-label="Sumar Raspberry Pi Zero W al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">SEN-DHT22</div><h3 class="product-card__name">Sensor temperatura y humedad DHT22</h3><div class="product-card__foot"><div class="product-card__price">$8900</div><button class="btn btn--primary btn--sm" aria-label="Sumar Sensor temperatura y humedad DHT22 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">SEN-HCSR04</div><h3 class="product-card__name">Sensor ultrasónico HC-SR04</h3><div class="product-card__foot"><div class="product-card__price">$4200</div><button class="btn btn--primary btn--sm" aria-label="Sumar Sensor ultrasónico HC-SR04 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">SEN-PIR</div><h3 class="product-card__name">Sensor de movimiento PIR HC-SR501</h3><div class="product-card__foot"><div class="product-card__price">$5100</div><button class="btn btn--primary btn--sm" aria-label="Sumar Sensor de movimiento PIR HC-SR501 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">SEN-LDR</div><h3 class="product-card__name">Fotorresistencia LDR 5mm</h3><div class="product-card__foot"><div class="product-card__price">$800</div><button class="btn btn--primary btn--sm" aria-label="Sumar Fotorresistencia LDR 5mm al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">LCD-1602-I2C</div><h3 class="product-card__name">Display LCD 16x2 con I2C</h3><div class="product-card__foot"><div class="product-card__price">$9700</div><button class="btn btn--primary btn--sm" aria-label="Sumar Display LCD 16x2 con I2C al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">DRV-L298N</div><h3 class="product-card__name">Driver de motores L298N</h3><div class="product-card__foot"><div class="product-card__price">$6800</div><button class="btn btn--primary btn--sm" aria-label="Sumar Driver de motores L298N al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">MOT-TT-DC</div><h3 class="product-card__name">Motor DC TT con reductora</h3><div class="product-card__foot"><div class="product-card__price">$3500</div><button class="btn btn--primary btn--sm" aria-label="Sumar Motor DC TT con reductora al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">MOT-SG90</div><h3 class="product-card__name">Servo SG90 9g</h3><div class="product-card__foot"><div class="product-card__price">$4900</div><button class="btn btn--primary btn--sm" aria-label="Sumar Servo SG90 9g al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--warning">Stock bajo</span></div></div><div class="product-card__body"><div class="product-card__sku">CHS-2WD</div><h3 class="product-card__name">Chasis robot 2WD con ruedas</h3><div class="product-card__foot"><div class="product-card__price">$16500</div><button class="btn btn--primary btn--sm" aria-label="Sumar Chasis robot 2WD con ruedas al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">PRT-830</div><h3 class="product-card__name">Protoboard 830 puntos</h3><div class="product-card__foot"><div class="product-card__price">$6200</div><button class="btn btn--primary btn--sm" aria-label="Sumar Protoboard 830 puntos al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">JMP-MM-40</div><h3 class="product-card__name">Jumpers macho-macho x40</h3><div class="product-card__foot"><div class="product-card__price">$3800</div><button class="btn btn--primary btn--sm" aria-label="Sumar Jumpers macho-macho x40 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">JMP-MH-40</div><h3 class="product-card__name">Jumpers macho-hembra x40</h3><div class="product-card__foot"><div class="product-card__price">$3800</div><button class="btn btn--primary btn--sm" aria-label="Sumar Jumpers macho-hembra x40 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">LED-5MM-X10</div><h3 class="product-card__name">Pack 10 LEDs 5mm surtidos</h3><div class="product-card__foot"><div class="product-card__price">$2100</div><button class="btn btn--primary btn--sm" aria-label="Sumar Pack 10 LEDs 5mm surtidos al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">RES-220-X25</div><h3 class="product-card__name">Pack 25 resistencias 220 ohm</h3><div class="product-card__foot"><div class="product-card__price">$1500</div><button class="btn btn--primary btn--sm" aria-label="Sumar Pack 25 resistencias 220 ohm al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">BTN-12MM</div><h3 class="product-card__name">Pulsador táctil 12mm</h3><div class="product-card__foot"><div class="product-card__price">$600</div><button class="btn btn--primary btn--sm" aria-label="Sumar Pulsador táctil 12mm al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">BAT-4AA</div><h3 class="product-card__name">Portapilas 4xAA con cable</h3><div class="product-card__foot"><div class="product-card__price">$2900</div><button class="btn btn--primary btn--sm" aria-label="Sumar Portapilas 4xAA con cable al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">PSU-5V-2A</div><h3 class="product-card__name">Fuente 5V 2A micro USB</h3><div class="product-card__foot"><div class="product-card__price">$7400</div><button class="btn btn--primary btn--sm" aria-label="Sumar Fuente 5V 2A micro USB al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--warning">Stock bajo</span></div></div><div class="product-card__body"><div class="product-card__sku">ARD-UNO-R3</div><h3 class="product-card__name">ARDUINO UNO R3 ORIGINAL</h3><div class="product-card__foot"><div class="product-card__price">$31.200</div><button class="btn btn--primary btn--sm" aria-label="Sumar ARDUINO UNO R3 ORIGINAL al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article></div><div style="display: flex; justify-content: center; margin-top: 48px; gap: 8px;"><button class="btn btn--ghost btn--sm">‹</button><button class="btn btn--primary btn--sm">1</button><button class="btn btn--ghost btn--sm">2</button><button class="btn btn--ghost btn--sm">3</button><span style="padding: 10px 8px; color: var(--ink-mute);">…</span><button class="btn btn--ghost btn--sm">14</button><button class="btn btn--ghost btn--sm">›</button></div></div></div></section></div>
+<div class="view" id="view-carrito"><header class="page-head"><div class="container"><div class="page-head__crumbs"><a href="#home">Inicio</a> / Carrito</div><h1>Tu pedido</h1><p style="margin-top: 14px; color: var(--ink-soft);">4 ítems · revisá antes de seguir al checkout.</p></div></header><section style="padding-bottom: 96px;"><div class="container cart-page"><div><div class="cart-row"><div class="ph">ARD</div><div><div class="cart-row__sku">ARD-UNO-R3</div><div class="cart-row__name">Arduino UNO R3 Original</div><button style="margin-top: 6px; font-size: 12px; color: var(--ink-mute); text-decoration: underline;">Quitar</button></div><div class="qty"><button aria-label="Restar">−</button><span>1</span><button aria-label="Sumar">+</button></div><div class="cart-row__price">$32.500</div></div><div class="cart-row"><div class="ph">SEN</div><div><div class="cart-row__sku">SEN-DHT22</div><div class="cart-row__name">Sensor DHT22 temp/hum</div><button style="margin-top: 6px; font-size: 12px; color: var(--ink-mute); text-decoration: underline;">Quitar</button></div><div class="qty"><button aria-label="Restar">−</button><span>2</span><button aria-label="Sumar">+</button></div><div class="cart-row__price">$11.600</div></div><div class="cart-row"><div class="ph">OLE</div><div><div class="cart-row__sku">OLED-128</div><div class="cart-row__name">Display OLED 0.96" I²C</div><button style="margin-top: 6px; font-size: 12px; color: var(--ink-mute); text-decoration: underline;">Quitar</button></div><div class="qty"><button aria-label="Restar">−</button><span>1</span><button aria-label="Sumar">+</button></div><div class="cart-row__price">$7.200</div></div><div style="margin-top: 48px;"><h2 style="font-size: 22px; margin-bottom: 18px;">También te puede interesar</h2><div class="product-grid"><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">MOT-SG90</div><h3 class="product-card__name">Servomotor SG90 · 9g</h3><div class="product-card__foot"><div class="product-card__price">$3.400</div><button class="btn btn--primary btn--sm" aria-label="Sumar Servomotor SG90 · 9g al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">MOD-HC05</div><h3 class="product-card__name">Bluetooth HC-05</h3><div class="product-card__foot"><div class="product-card__price">$6.900</div><button class="btn btn--primary btn--sm" aria-label="Sumar Bluetooth HC-05 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"></div></div><div class="product-card__body"><div class="product-card__sku">ESP32-DEV</div><h3 class="product-card__name">ESP32 DevKit V1</h3><div class="product-card__foot"><div class="product-card__price">$14.900</div><button class="btn btn--primary btn--sm" aria-label="Sumar ESP32 DevKit V1 al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article><article class="product-card card"><div class="product-card__media ph">PRODUCTO<div class="product-card__badges"><span class="badge badge--soft">Combo</span></div></div><div class="product-card__body"><div class="product-card__sku">KIT-PROTO</div><h3 class="product-card__name">Protoboard + jumpers</h3><div class="product-card__foot"><div class="product-card__price">$8.200</div><button class="btn btn--primary btn--sm" aria-label="Sumar Protoboard + jumpers al pedido"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg> Sumar</button></div></div></article></div></div></div><aside class="cart-summary"><h3>Resumen</h3><div class="cart-summary__row"><span>Subtotal</span><span>$51.300</span></div><div class="cart-summary__row"><span>Envío</span><span>$4.500</span></div><div class="cart-promo"><input placeholder="Código de descuento"><button class="btn btn--ghost btn--sm">Aplicar</button></div><div class="cart-summary__row cart-summary__row--total"><span class="label">Total</span><span>$55.800</span></div><p class="mono" style="font-size: 11px; color: var(--ink-mute); margin-top: 6px;">o 12 cuotas de $4.650</p><button class="btn btn--primary btn--lg" style="width: 100%; margin-top: 18px;">Ir al checkout <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><a href="#catalogo" class="btn btn--ghost btn--sm" style="width: 100%; margin-top: 10px; justify-content: center;">Seguir comprando</a><ul style="list-style: none; padding: 0px; margin: 24px 0px 0px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--ink-soft);"><li style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--accent);"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span> Compra protegida con MercadoPago</li><li style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--accent);"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span> Despacho 24hs hábiles</li><li style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--accent);"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span> Cambio si llega defectuoso</li></ul></aside></div></section></div>
+</div>
+<footer class="footer"><div class="container"><div class="footer__top"><div class="footer__brand"><a href="#home" class="logo" aria-label="MAKERLAB inicio" style="display: inline-flex; align-items: center; gap: 10px;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="6" fill="var(--accent)"></rect><path d="M9 22 V10 L13 16 L17 10 V22" stroke="#042B1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="22" cy="11" r="1.6" fill="#042B1F"></circle><path d="M22 13 V21" stroke="#042B1F" stroke-width="2.2" stroke-linecap="round"></path></svg><span style="font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; font-size: 18px; color: rgb(247, 244, 238);">MAKERLAB</span></a><p>Tienda maker en Argentina. Componentes con stock real y envíos a todo el país desde 2021.</p></div><div class="footer__col"><h4>Tienda</h4><ul><li><a href="#catalogo">Catálogo</a></li><li><a href="#catalogo">Bestsellers</a></li><li><a href="#catalogo">Ofertas</a></li></ul></div><div class="footer__col"><h4>Ayuda</h4><ul><li><a href="#">Envíos y devoluciones</a></li><li><a href="#">FAQ</a></li><li><a href="#">Contacto</a></li><li><a href="#">Soporte técnico</a></li></ul></div><div class="footer__col"><h4>Empresa</h4><ul><li><a href="#">Nosotros</a></li><li><a href="#">Mayoristas</a></li><li><a href="#">Trabajá con nosotros</a></li><li><a href="#">Términos · Privacidad</a></li></ul></div></div><div class="footer__bottom"><div>© 2026 MAKERLAB · CUIT 30-00000000-0</div><div class="footer__pay"><span class="footer__pay-pill">VISA</span><span class="footer__pay-pill">MASTER</span><span class="footer__pay-pill">AMEX</span><span class="footer__pay-pill">MP</span><span class="footer__pay-pill">TRANSF</span></div><div class="footer__social"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="3"></rect><path d="m10 9 6 3-6 3z" fill="currentColor"></path></svg></a><a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0 0 12 2z"></path></svg></a><a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.5 5.3a17 17 0 0 0-4.1-1.3l-.2.4a16 16 0 0 0-6.4 0l-.2-.4A16.5 16.5 0 0 0 4.5 5.3 17.7 17.7 0 0 0 1.7 17a17 17 0 0 0 5.1 2.6l.4-.6a11 11 0 0 1-1.7-.8l.4-.3a12 12 0 0 0 10.2 0l.4.3a11 11 0 0 1-1.7.8l.4.6a17 17 0 0 0 5.1-2.6 17.6 17.6 0 0 0-2.8-11.7zM8.5 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm7 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"></path></svg></a></div></div></div></footer></div>
+
+
+
+
+
+
+
+
+
+<script>
+(function () {
+  var views = ['home', 'catalogo', 'carrito'];
+  function show() {
+    var h = (location.hash || '#home').slice(1);
+    if (views.indexOf(h) === -1) return; // hash interno (#nosotros): scroll nativo
+    document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('is-active'); });
+    document.getElementById('view-' + h).classList.add('is-active');
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+</script>
+</body></html>
