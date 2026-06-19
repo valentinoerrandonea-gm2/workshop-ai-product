@@ -128,21 +128,23 @@ estático, CSS de web-actual".
 
 ## Fase 4 — Prototipo (45 min)
 
-**Objetivo:** implementar la sección Cursos sobre `web-actual/`.
+**Objetivo:** agregar la sección Cursos **dentro de** `web-actual/index.html`.
 
 ```
-Ejecutá el spec: construí Cursos.html y Curso-Semaforo.html dentro de
-~/Desktop/caso-makerlab/web-actual/, reusando styles.css y
-styles-components.css, y agregá "Cursos" al nav de las páginas existentes.
-HTML estático puro, sin JS.
+Ejecutá el spec: agregá a ~/Desktop/caso-makerlab/web-actual/index.html dos
+vistas nuevas —"Cursos" (listado) y el detalle de un curso— reutilizando los
+estilos embebidos y el router por hash que el archivo ya tiene, y sumá "Cursos"
+al menú. Todo dentro del mismo index.html, un solo archivo.
 ```
 
 Narrar mientras construye: reuso de componentes del design system (kit-cards,
 badges de nivel, monospace para SKUs), la CTA única "Inscribirme — kit incluido",
-la BOM del kit en el detalle.
+la BOM del kit en el detalle, y cómo las vistas nuevas se enganchan al router que
+ya existe (sin romper Inicio/Catálogo/Carrito).
 
-**Checkpoint ✓**: `open ~/Desktop/caso-makerlab/web-actual/Cursos.html` —
-navegable: Home → Cursos → Semáforo → CTA. Y `grep -ri "<script" *.html` vacío.
+**Checkpoint ✓**: abrí `index.html` en el navegador y navegá Inicio → Cursos →
+detalle del curso → CTA al carrito, todo sin cambiar de archivo. Un único
+`index.html` autocontenido.
 
 **Rescate**: tu prototipo de referencia (`outcome-esperado/referencia/prototipo/`)
 — compartilo como zip SOLO a quien se trabó fuerte; que el resto termine el suyo

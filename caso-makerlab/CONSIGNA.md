@@ -19,8 +19,9 @@ Claude en cada paso.
 - **`material-cliente/`** — todo lo que mandó el cliente: minutas, mails, una
   conversación de Slack, una presentación, una foto y un Excel. Crudo,
   desordenado, y no todo dice lo mismo.
-- **`web-actual/`** — la web que MakerLab tiene hoy (HTML estático). Es tu punto
-  de partida; abrila en el navegador y recorrela.
+- **`web-actual/index.html`** — la web que MakerLab tiene hoy: un único archivo
+  HTML autocontenido (estilos y navegación adentro, sin dependencias). Es tu punto
+  de partida; abrilo en el navegador y recorrelo (Inicio · Catálogo · Carrito).
 - Las **skills de Rufino** ya instaladas en Claude Code (`/process-rufino`,
   `/ask-rufino`, `/rufino-ingest`).
 
@@ -85,13 +86,17 @@ dato (todo del material del cliente, nada inventado).
 
 ### Paso 4 — Construir el prototipo
 
-Pedile a Claude que ejecute el spec y construya la sección de cursos sobre la web
-actual, reutilizando su diseño. El entregable mínimo:
+Pedile a Claude que ejecute el spec agregando la sección de cursos **dentro de
+`web-actual/index.html`** (mismo archivo, reutilizando los estilos embebidos y el
+menú que ya tiene). El entregable mínimo:
 
-- **Una página de listado** con los cursos (nombre, nivel, duración, precio).
-- **Al menos una página de detalle de curso** completa: qué vas a construir, el
+- **Una vista de listado** con los cursos (nombre, nivel, duración, precio).
+- **Al menos una vista de detalle de curso** completa: qué vas a construir, el
   temario, nivel y duración, el **kit de componentes incluido** con su lista, el
   **precio único**, y **un solo botón** de inscripción ("Inscribirme — kit incluido").
+- Un link **"Cursos"** en el menú, y que se navegue sin salir del archivo.
+
+Todo queda en un único `index.html` autocontenido — ideal para subirlo a Gizmo.
 - **Navegable desde la home** de la web actual (un link "Cursos" en el menú).
 
 ### Paso 5 — Validar
@@ -109,7 +114,8 @@ Subí tu prototipo a **Gizmo** (la plataforma interna) y compartí el link.
 - **HTML estático puro**: sin React, sin frameworks, sin pasos de build. Lo que el
   navegador abre, es.
 - **Se tiene que sentir parte de la web actual**: mismo diseño, misma navegación.
-  Reutilizá el CSS que ya está en `web-actual/`, no inventes un estilo nuevo.
+  Reutilizá los estilos que ya están embebidos en `web-actual/index.html`, no
+  inventes un estilo nuevo.
 - **El contenido sale del material del cliente, no de tu imaginación**: cada
   curso, precio, componente y texto tiene una fuente en lo que mandó MakerLab.
 - **No hace falta checkout real ni backend**: es un prototipo para validar el

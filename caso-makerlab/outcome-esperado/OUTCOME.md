@@ -40,17 +40,19 @@
 
 ## B. ¿El prototipo cumple?
 
-- [ ] **HTML estático puro** — cero `<script>`, cero frameworks. `grep -ri
-      "<script" *.html` devuelve nada.
+- [ ] **Un único `index.html` autocontenido** — sin frameworks ni build steps;
+      estilos embebidos en `<style>` y la navegación entre vistas con un router JS
+      mínimo embebido. Todo en un solo archivo (ideal para subir a Gizmo).
 - [ ] **Integra el design system de la web actual** — mismas fuentes, paleta,
-      componentes (cards, badges, botones); no parece un sitio aparte.
+      componentes (cards, badges, botones); no parece un sitio aparte. Reutiliza
+      los estilos ya embebidos, no inventa uno nuevo.
 - [ ] **Listado de cursos** con los 3 de la primera camada, nivel, duración y
       precio de cada uno.
 - [ ] **Al menos un detalle de curso completo** con: qué vas a construir, temario
       por clases, nivel y duración, el kit incluido con sus componentes (SKUs del
       excel), precio único y **una sola CTA** de inscripción con kit incluido.
-- [ ] **Navegable desde la Home** — la sección Cursos está en el nav de la web,
-      no es un archivo suelto.
+- [ ] **Navegable desde la Home** — "Cursos" está en el menú y se llega a las
+      vistas nuevas sin salir del archivo.
 - [ ] **Datos exactos del canon** — precios, duraciones y SKUs coinciden con el
       material del cliente (nada inventado).
 - [ ] **Publicado en Gizmo** y el link abre.
